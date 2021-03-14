@@ -1,0 +1,299 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900|Ubuntu" rel="stylesheet">
+
+<style>
+  .pad-left{
+    padding: 1% 5%;
+  }
+  .navbar-brand{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+  .nav-link{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size:18px;
+  }
+  .navbar-brand{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+  .nav-item {
+  padding: 0 18px;
+  }
+
+  #slide-container {
+ position: relative;
+ max-width: 100%;
+}
+
+#slide-first-element {
+ display: block;
+ width: 100%;
+ height: auto;
+}
+
+#slide-element-2 {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+}
+
+.slide-image {
+  width: 52%;
+  display: inline-block;
+}
+
+#slide-first-element {
+ animation: fade-1 10s infinite;
+ -webkit-animation: fade-1 10s infinite;
+}
+#slide-element-2 {
+ animation: fade-2 10s infinite;
+ -webkit-animation: fade-2 10s infinite;
+}
+
+@keyframes fade-1 {
+ 0% { opacity: 1; }
+ 33% { opacity: 0; }
+ 66% { opacity: 0; }
+ 75% {opacity: 1;}
+ 95% {opacity: 1;}
+ 100% { opacity: 1; }
+}
+@keyframes fade-2 {
+ 0% { opacity: 0; }
+ 33% { opacity: 1; }
+ 66% { opacity: 1; }
+ 100% { opacity: 0; }
+}
+
+.pad-left-more{
+  padding: 2% 6%;
+}
+.pad-action {
+  padding-top: 50px;
+}
+.pad-left{
+  padding: 1% 6%;
+}
+
+.action-hyper{
+font-family: 'Montserrat', sans-serif;
+font-size: 57px;
+font-weight: bold;
+line-height: 1.5;
+}
+.login-div {
+  padding: 6px;
+  background-color: #E5E5E5;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  line-height: 1.5;
+
+}
+
+.content-login-div {
+  padding: 5px;
+  background-color: #F5F2F2;
+  border-radius: 10px;
+}
+.form-control {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.password-reset {
+  color: #409CD0;
+  text-decoration: none;
+}
+
+.password-reset:hover {
+
+  color: #409CD0;
+  text-decoration: none;
+  border: none;
+
+}
+
+.col-7{
+  display: block;
+  padding-bottom: 10px;
+}
+.white-lm {
+  font-family: 'Montserrat', sans-serif;font-weight: lighter;
+}
+
+.login-btn-pad {
+  margin-left: 30px;
+}
+
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.pad-top-login-box{
+  padding-top:17%;
+}
+
+.yellow_col{
+  background-color: #F2C94C;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.yellow_col:hover {
+    background-color: black;
+    color: white;
+    transition: all .2s;
+}
+#footr{
+  background-color:black;
+}
+
+.link-secondary, li{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: white;
+  text-decoration: none;
+}
+
+h5{ color:white; }
+</style>
+
+<section id = "title" style = "background-color:black;">
+        <div class = "pad-left" style = "padding-right:9%;">
+          <div class = "pad-bottom">
+            <nav class="navbar navbar-expand navbar-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">sVipd</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Merchant</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/login">Login</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+          </div>
+        </div>
+</section>
+
+
+
+    <section id = "Login" style = "margin-bottom: 50px;">
+      <div class = "container-fluid">
+        <div class = "row pad-action pad-left-more">
+
+          <div class = "col-6">
+            <h1 class="action-hyper">Login</h1>
+            <br />
+
+
+            <div id="slide-container">
+             <div id="slide-first-element">
+              <img class="slide-image" src="<%= asset_path('app_search') %>">
+             </div>
+             <div id="slide-element-2">
+              <img class="slide-image" src="<%= asset_path('search_res') %>">
+
+             </div>
+
+
+            </div>
+          </div>
+
+
+          <div class = "col-6 center-justify pad-top-login-box">
+
+              <div class = "login-div" >
+                <div class = "content-login-div">
+                  <center>
+                    <h1 class = "action-hyper">sVipd</h1>
+                    <form action = "/home_login">
+                      <div class = "col-7">
+                        <input class="form-control me-2" name = "myform" id = "myform" type="search" placeholder="Username, phone number, or email address" aria-label="Search">
+                      </div>
+                      <div class = "col-7">
+                        <input class="form-control me-2" type="password" placeholder="Password" aria-label="Search">
+                        <a href = "#" name = "login" id = "login" class ="password-reset white-lm" style = "background-color:#F5F2F2;">Forgot your password?</a>
+                      </div>
+
+                      <div class = "login-btn-pad" style = "margin-bottom:10px;">
+                        <button class="btn yellow_col btn-lg section-download-button col-3" type="submit"> Login </button>
+                      </div>
+                    </form>
+                  </center>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+
+
+      </div>
+    </section>
+
+
+    <section id ="footr" >
+      <footer class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <small class="d-block mb-3 text-muted">sVipd<sup>&copy;</sup> 2021</small>
+      </div>
+
+      <div class="col-6 col-md">
+        <h5>Features</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Learn</a></li>
+          <li><a class="link-secondary" href="#">Social</a></li>
+          <li><a class="link-secondary" href="#">Search</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Issues</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Trending</a></li>
+          <li><a class="link-secondary" href="#">Reward</a></li>
+          <li><a class="link-secondary" href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Terms</a></li>
+          <li><a class="link-secondary" href="#">Locations</a></li>
+          <li><a class="link-secondary" href="#">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

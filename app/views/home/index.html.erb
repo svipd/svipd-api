@@ -1,7 +1,551 @@
-<%= form_tag products_path, method: :get, id: 'search' do %>
-  Search Products:
-  <%= text_field "search", :search, :class => 'form-control' %>
-  <%= submit_tag 'Search', id: 'search_submit', class: 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Are you a merchant?', merchant_login_path, :class => 'btn btn-primary' %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900|Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
 
+    <script>
+
+      $(document).ready(function(){
+
+        <% @storiess.each do |story| %>
+        $("#myBtn<%= story.sid %>").click(function(){
+
+
+          $("#img-rotate<%= story.sid %>").removeClass("img-rotate");
+          $("#img-rotate<%= story.sid %>").addClass("img-rotate_a");
+
+          setTimeout(function() {
+              $('#Modal<%= story.sid %>').modal('hide');
+          }, 4030);
+
+
+
+      });
+      <% end %>
+      });
+
+    </script>
+
+  <style>
+    .decs {
+      max-width: 52ch;
+    }
+        .justify-center {
+      border: 0px dotted black;
+      border-radius: 150px;
+      position:relative;
+    }
+
+    .image {
+      position: absolute;
+    }
+
+    .img-rotate {
+      display: block;
+      border-radius: 9999px;
+      content: '';
+      width: 80px;
+      height: 80px;
+
+      border: 4px dotted #000;
+
+      animation: spin 2.5s linear forwards;
+    }
+
+    @keyframes spin {
+      30%{
+        border: 4px dotted #000000;
+      }
+      70% {
+        transform: rotate(360deg);
+        border: 4px dotted #F2C94C;
+
+      }
+      80% {
+        border: 4px dotted #F2C94C;
+      }
+      100%{
+        border: 4px solid #F2C94C;
+
+      }
+    }
+
+
+    .img-rotate_a {
+      display: block;
+      border-radius: 9999px;
+      content: '';
+      width: 80px;
+      height: 80px;
+
+      border: 4px solid #c4c4c4;
+
+    }
+
+    .gold_col{
+      background-color: #F2C94C;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+
+    .animated {
+      width: 0px;
+      height: 3px;
+      animation: expand 4s linear forwards;
+      background: #000000;
+    }
+    @keyframes expand {
+      20% {
+        width: 102.5px;
+        height: 3px;
+        background: #000000;
+      }
+      40%{
+        width: 205px;
+        height: 3px;
+        background: #000000;
+      }
+      80%{
+        width: 307.5px;
+        height: 3px;
+        background: #000000;
+      }
+      100%{
+        width: 410px;
+        height: 3px;
+        background: #000000;
+      }
+    }
+
+    .pad-left{
+      padding: 1% 5%;
+    }
+    .nav-item {
+    padding: 0 18px;
+    }
+    .nav-link{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size:18px;
+    }
+    .navbar-brand{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+    }
+    .pad-action {
+      padding-top: 50px;
+    }
+    .pad-left-more{
+      padding: 2% 6%;
+    }
+    .circle{
+      display: inline-block;
+      height: 200px;
+      width: 200px;
+      background-color: black;
+      border-radius: 100px;
+    }
+  .resize-icon{
+      margin: 30%;
+      color: #F2C94C;
+    }
+    .action-hyper{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 57px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+h3{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 27px;
+  font-weight: lighter;
+  line-height: 1.5;
+}
+h4{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 27px;
+  font-weight: thin;
+  line-height: 1.5;
+  margin: 5% 0%;
+  text-decoration: underline;
+}
+input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: thin;
+
+}
+.pay-section {
+  width: 52%;
+  display: inline-block;
+}
+.section-download-button {
+  margin: 15% 6% 5% 0%;
+
+
+}
+.black_col{
+  background-color: #F5F5F5;
+  color: #000000;
+  border-radius: 10px;
+  padding: 15px;
+}
+.black_col:hover {
+    background-color: #F2C94C;
+    color: #FFFFFF;
+    transition: all .2s;
+}
+#top-margn{
+  margin-top: 40px;
+}
+.yellow_col{
+  background-color: #F2C94C;
+  border-radius: 10px;
+  padding: 15px;
+}
+.yellow_col:hover {
+    background-color: black;
+    color: white;
+    transition: all .2s;
+}
+.extra-large{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+#footr{
+  background-color:black;
+}
+.link-secondary, li{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: white;
+  text-decoration: none;
+}
+h5{ color:white; }
+
+  </style>
+  <section id = "title" style = "background-color:black;">
+          <div class = "pad-left" style = "padding-right:9%;">
+            <div class = "pad-bottom">
+              <nav class="navbar navbar-expand navbar-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">sVipd</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Merchant</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/login">Login</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+            </div>
+          </div>
+</section>
+
+
+
+
+
+
+<section id = "Story_section">
+
+<div class = "container-fluid">
+  <div class = "pad-action" style = "margin-top:10px;margin-left:5.1%;">
+    <h1><b>Trending</b></h1>
+  </div>
+<div class = "pad-action pad-left-more" style = "margin-left:20px;">
+
+<% @storiess.each do |story| %>
+    
+    
+    
+    
+  <div style = "display:inline-block; margin-right: 10px;" id = "myBtn<%= story.id %>" data-bs-toggle="modal" data-bs-target="#Modal<%= story.id %>">
+        <div class="justify-center" style = "width:113px;">
+
+            <div class = "image" style = "padding: 10px;">
+              <img style = "width:60px; background-color:#fff; border-radius: 150px; border: 0.1px solid #F2C94C;" class="img-merchant" src="<%= story.merchant %>" alt="Merchant CTown">
+            </div>
+            <div id ="img-rotate<%= story.id %>" class = "img-rotate">
+
+              </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="Modal<%= story.id %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-body">
+            <div>
+              <img style = "width:100px; background-color:#fff; border-radius: 150px; border: 1px solid black; display: inline-block;" class="img-merchant" src="<%= story.merchant %>" alt="">
+              <h5 class="modal-title" id="ModalLabel" style = "display: inline-block;color:black;"> <%= Company.find_by(company_id: story.company_id).name %> </h5>
+              <br />
+              <div style = "display:inline-block;padding-left:20px;">
+                  <div style = "">
+                    <hr class="animated" />
+                    </div>
+              </div>
+              <br />
+
+            </div>
+
+            <div style = "padding-left:20px;">
+              <img src = "<%= story.image %>"  width = "415"/>
+            </div>
+
+            <div style = "padding-left:20px;">
+              <h5 style = "color:black;"><%= story.product_title %></h5>
+              <p class ="decs">
+                <%= story.description %>
+                </p>
+
+              <button class = "btn gold_col btn-lg" style ="background-color: #F2C94C;">See more</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</section>
+
+
+
+<section id = "Search">
+  <div class = "container-fluid" style = "margin-top:1%;">
+    <div class = "pad-action" style = "margin-top:10px;margin-left:5.1%;">
+      <h1><b></b></h1>
+    </div>
+        <div class = "row pad-action pad-left-more" style = "margin-left: 160px;">
+          <div class = "col-10" style = "padding-right:6%;">
+            <div class="input-group">
+                <%= form_tag products_path, method: :get, style: 'width: 1000px;', id: 'search' do %>
+
+                  <%= text_field "search", :search, :class => 'form-control', style: "font-size:28px;font-weight:100;border-top-left-radius: 20px;border-bottom-left-radius: 20px;box-shadow:none;outline:none;border: 1px solid #c4c4c4; border-right: 0px solid; background-color: #fff", placeholder: 'Search for a product, or enter product barcode' %>
+                  <!--<%= submit_tag 'Search', id: 'search_submit', class: 'btn btn-primary' %>-->
+                <% end %>
+                <!--<%= link_to 'Are you a merchant?', merchant_login_path, :class => 'btn btn-primary' %>-->
+              
+                </div>
+
+          </div>
+        </div>
+    </div>
+</section>
+
+<section id = "features top-margn">
+
+<div class = "container-fluid" style = "margin-top:1%;">
+  <div class = "pad-action" style = "margin-top: 10px;margin-left:5.1%;">
+    <h1><b>Benefits</b></h1>
+  </div>
+  <div class = "row pad-action">
+
+    <div class="feature-box col-lg-4 col-md-12 text-center">
+      <div class = "circle">
+        <i class="fas fa-dollar-sign fa-5x resize-icon"></i>
+      </div>
+      <div class = "pad-feat">
+        <h2>Save</h2>
+        <p style = "font-family: 'Montserrat', sans-serif;font-weight: lighter;">Save money by learning the best prices.</p>
+        </div>
+    </div>
+
+    <div class="feature-box col-lg-4 col-md-12 text-center">
+      <div class = "circle">
+        <i class="fas fa-user fa-5x resize-icon"></i>
+      </div>
+      <div class = "pad-feat">
+        <h2>Social</h2>
+        <p style = "font-family: 'Montserrat', sans-serif;font-weight: lighter;">Stay updated with great deals around you.</p>
+        </div>
+    </div>
+
+    <div class="feature-box col-lg-4 col-md-12 text-center">
+      <div class = "circle">
+        <i class="fas fa-search-dollar fa-5x resize-icon"></i>
+      </div>
+      <div class = "pad-feat">
+        <h2>Search</h2>
+        <p style = "font-family: 'Montserrat', sans-serif;font-weight: lighter;">Save time every week via sVipd alerts.</p>
+        </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+<section id = "join">
+  <div class = "container-fluid" style = "margin-top:1%;">
+    <div class = "pad-action" style = "margin-top:10px;margin-left:5.1%;">
+      <h1><b>Join</b></h1>
+    </div>
+  </div>
+</section>
+
+<section id = "pay top-margn" data-aos="fade-down"  data-aos-easing="linear" data-aos-duration="500">
+        <div class = "container-fluid">
+          <div class = "row pad-action pad-left-more">
+
+            <div class = "col-6">
+              <img class = "pay-section" src="<%= asset_path('search_res') %>" alt="iphone-mockup-showing-sVipd-mobile-application" style = "float:left;">
+            </div>
+            <div class = "col-6">
+              <h1 class="action-hyper">Search products and get the information</h1>
+              <h3>
+                sVipd lets you search the products around you and compare their prices and deals on them. Thus, It is now easy for you to learn where you can find a product around you and make the best of it. <strong><u>ALWAYS</u></strong>
+              </h3>
+              <h4>Curious?</h4>
+
+              <center>
+                <button type="button" class="btn yellow_col btn-lg section-download-button col-5"><i class="fas fa-hand-holding-usd fa-2x"></i><br />
+                  <strong>Learn more</strong>
+                </button>
+              </center>
+
+            </div>
+
+            </div>
+          </div>
+</section>
+
+
+<section id = "social top-margn" data-aos="fade-right"  data-aos-easing="linear" data-aos-duration="500">
+        <div class = "container-fluid">
+          <div class = "row pad-action pad-left-more">
+
+            <div class = "col-6">
+              <h1 class="action-hyper">Socialize to make the best of your money</h1>
+              <h3>
+sVipd offers a unique opportunity to learn about trends around you and what people are interested in. Get information from the merchants and users about a new product, sale, and offers, and help promote the right ones.               </h3>
+              <h4>Curious?</h4>
+
+              <center>
+                <button type="button" class="btn black_col btn-lg section-download-button col-5"><i class="fas fa-globe-americas fa-2x"></i><br />
+                  <strong>Learn more</strong>
+                </button>
+              </center>
+
+            </div>
+
+            <div class = "col-6">
+              <img class = "pay-section" src="<%= asset_path('app_recommend') %>" alt="iphone-mockup-showing-sVipd-mobile-application" style = "float: right;">
+
+            </div>
+
+
+            </div>
+          </div>
+</section>
+
+
+<section id = "true_app">
+        <div class = "container-fluid">
+          <div class = "row pad-action pad-left-more">
+
+            <div class = "col-12">
+              <h1 class="extra-large">
+                Join the revolution of a true social application  for the people.</h1>
+
+              <center style = "padding-top:100px;">
+
+                <button type="button" class="btn yellow_col btn-lg download-button-end" style = "padding: 20px; width: 300px;"><i class="fab fa-wpexplorer fa-2x"></i><br /> Learn More</button>
+              </center>
+
+            </div>
+          </div>
+        </div>
+</section>
+<br />
+<br />
+<br />
+
+
+
+<section id ="footr">
+        <footer class="py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <small class="d-block mb-3 text-muted">sVipd<sup>&copy;</sup> 2021</small>
+        </div>
+
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="link-secondary" href="#">Learn</a></li>
+            <li><a class="link-secondary" href="#">Social</a></li>
+            <li><a class="link-secondary" href="#">Search</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Issues</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="link-secondary" href="#">Trending</a></li>
+            <li><a class="link-secondary" href="#">Reward</a></li>
+            <li><a class="link-secondary" href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="link-secondary" href="#">Terms</a></li>
+            <li><a class="link-secondary" href="#">Locations</a></li>
+            <li><a class="link-secondary" href="#">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    AOS.refresh();
+  </script>

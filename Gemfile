@@ -4,6 +4,7 @@ ruby '>= 2.6.4', '< 3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'y
 gem 'rails', '4.2.11.3'
+gem 'rerun'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

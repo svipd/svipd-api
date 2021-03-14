@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809022253) do
+ActiveRecord::Schema.define(version: 20210314022548) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "companies", primary_key: "company_id", force: :cascade do |t|
+    t.text "name",        null: false
+    t.text "description"
+    t.text "address"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -22,4 +37,14 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.datetime "updated_at"
   end
 
+  create_table "products", id: false, force: :cascade do |t|
+    t.integer "company_id",  null: false
+    t.text    "description", null: false
+    t.text    "name",        null: false
+    t.float   "price",       null: false
+    t.integer "stock_count"
+    t.integer "pid",         null: false
+  end
+
+  add_foreign_key "products", "companies", primary_key: "company_id", name: "company"
 end

@@ -29,6 +29,7 @@ class CompaniesController < ApplicationController
         @distances << distance
       end
     end
+    @distances = @distances.sort_by { |hsh| hsh[:distance] }
     @distances
   end
 

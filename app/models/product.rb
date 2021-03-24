@@ -8,7 +8,6 @@ class Product < ActiveRecord::Base
 
   
   def self.get_all_distances(products)
-    puts "CITY::: #{request.location.city}"
     comp_dist = Company.company_to_current_user_by_distance()
     prod_to_dist = Hash.new
     products.each do |p|

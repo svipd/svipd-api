@@ -14,6 +14,11 @@ class Company < ActiveRecord::Base
     user_addr = '4200 Fifth Ave, Pittsburgh, PA 15260'
     if loc.nil? == false
       user_addr = loc
+      puts "HEREEEEEEEEEEEEE"
+      puts "HEREEEEEEEEEEEEE"
+      puts "HEREEEEEEEEEEEEE"
+      puts "HEREEEEEEEEEEEEE"
+      puts "HEREEEEEEEEEEEEE"
     end
     user_addr=Geokit::Geocoders::GoogleGeocoder.geocode user_addr
     @distances = Hash.new

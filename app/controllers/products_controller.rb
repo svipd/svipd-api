@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
         @products = Product.where("LOWER (name) LIKE ?  OR LOWER( description ) LIKE ? ", "%#{s.downcase}%", "%#{s.downcase}%").order(:price)
       end
     end
-    @distances = Product.get_all_distances(@products)
+    @distances = Product.get_all_distances(@products, request.location.address)
     @product_list = []
     four_products = []
     counter = 0

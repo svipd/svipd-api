@@ -54,3 +54,5 @@ group :test do
   gem 'simplecov', :require => false
 end
 gem "database_cleaner", "~> 1.99"
+
+gem "geocoder", "~> 1.6"

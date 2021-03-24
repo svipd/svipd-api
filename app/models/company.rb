@@ -5,14 +5,17 @@ class Company < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
   
-  def self.company_to_current_user_by_distance()
+  def self.company_to_current_user_by_distance(loc)
     # Add the following to the user load:
     # geocoded_by :ip_address,
     # :latitude => :lat, :longitude => :lon
     # after_validation :geocode
     @companies = Company.all
-    temp_user_address = '4200 Fifth Ave, Pittsburgh, PA 15260'
-    user_addr=Geokit::Geocoders::GoogleGeocoder.geocode temp_user_address
+    user_addr = '4200 Fifth Ave, Pittsburgh, PA 15260'
+    if loc.nil? == false
+      user_addr = loc
+    end
+    user_addr=Geokit::Geocoders::GoogleGeocoder.geocode user_addr
     @distances = Hash.new
     @companies.each do |c|
       if c.address.nil? == false

@@ -227,7 +227,7 @@
                   <h5 class="card-title" style = "color:black;"> <%= link_to product.name, product_path(product.pid), :class => 'nostyle'%></h5>
                   <p class="card-text" style = "text-align: justify;"><%= product.description %></p>
                   <p class="card-text h5" style = "text-align: justify;">$<%= product.price %></p>
-                  <p class="card-text h6" style = "text-align: justify;"><%= @distances[product.pid] %> mi away</p>
+                  <p class="card-text h6" style = "text-align: justify;"><%= @distances[product.pid].nil? ? "" : "#{@distances[product.pid]} mi away" %></p>
                 </div>
                 <div class = "body" style = "float:right;">
                   <%= link_to product.company.name, company_path(product.company_id), class: 'btn', style: 'background-color:black;color:#F2C94C;' %>

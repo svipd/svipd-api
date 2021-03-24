@@ -6,9 +6,8 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :price, presence: true
 
-  
-  def self.get_all_distances(products)
-    comp_dist = Company.company_to_current_user_by_distance()
+  def self.get_all_distances(products, loc)
+    comp_dist = Company.company_to_current_user_by_distance(loc)
     prod_to_dist = Hash.new
     products.each do |p|
       if comp_dist[p.company.company_id].nil? == false

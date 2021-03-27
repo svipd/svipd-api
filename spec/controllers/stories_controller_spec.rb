@@ -28,12 +28,6 @@ RSpec.describe StoriesController, :type => :controller do
       end
     end
     let(:story) { FactoryGirl.create(:story) }
-  context "GET show/:id" do
-    it "renders the product show template" do
-      get :show, id: 4
-      expect(response).to render_template("show")
-    end
-  end
   context "GET new" do
     it "renders the product new template" do
       get :new

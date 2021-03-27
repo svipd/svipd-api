@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.integer "stock_count"
     t.integer "company_id"
     t.string "image_url"
+    t.string "barcode"
   end
   create_table "companies", force: :cascade, :id => false do |t|
     t.integer "company_id", :primary_key => true

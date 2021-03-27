@@ -39,7 +39,6 @@ class ProductsController < ApplicationController
     unless four_products.empty?
       @product_list.push(four_products)
     end
-    
   end
 
  # def initialize

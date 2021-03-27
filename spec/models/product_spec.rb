@@ -2,6 +2,34 @@ require 'rails_helper'
 RSpec.describe Product, :type => :model do
 
     
+    describe 'search by company' do
+        it "Searches for products by company" do
+            products = Product.all
+            products_1 = Product.where("company_id = 1")
+            products = Product.search_by_companyid(products, 1, "")
+            l = Array.new
+            products.each do |x|
+                l.append(x.pid)
+            end
+            products_1.each do |x|
+                expect(l.include? x.pid).to be true
+            end
+        end
+    end
+    describe 'search' do
+        it "Searches for products" do
+            products1 = Product.all
+            products = Product.search(products1, "")
+            l = Array.new
+            products1.each do |x|
+                l.append(x.pid)
+            end
+            products.each do |x|
+                expect(l.include? x.pid).to be true
+            end
+        end
+    end
+
     describe 'location' do
         it "takes a list of products and returns distance to each" do
             products = Product.all
@@ -14,7 +42,7 @@ RSpec.describe Product, :type => :model do
 
     
     describe 'location sort asc' do
-        it "takes a list of products and returns distance to each" do
+        it "takes a list of products and returns distance to each sorted by dist asc" do
             products = Product.all
             Product.generate_distances(products, "4200 Fifth Ave, Pittsburgh, PA 15260")
             products = Product.order_by_dist(products, true)
@@ -27,7 +55,7 @@ RSpec.describe Product, :type => :model do
     end
     
     describe 'location sort desc' do
-        it "takes a list of products and returns distance to each" do
+        it "takes a list of products and returns distance to each sorted by dist desc" do
             products = Product.all
             Product.generate_distances(products, "4200 Fifth Ave, Pittsburgh, PA 15260")
             products = Product.order_by_dist(products, false)
@@ -40,7 +68,7 @@ RSpec.describe Product, :type => :model do
     end
 
     describe 'price sort desc' do
-        it "takes a list of products and returns distance to each" do
+        it "takes a list of products and returns distance to each sorted by price desc" do
             products = Product.all
             products = Product.order_by_price(products, false)
             last = 1000000000000
@@ -52,13 +80,42 @@ RSpec.describe Product, :type => :model do
     end
 
     describe 'price sort asc' do
-        it "takes a list of products and returns distance to each" do
+        it "takes a list of products and returns distance to each sorted by price asc" do
             products = Product.all
             products = Product.order_by_price(products, true)
             last = -1000
             products.each do |p|
                 expect(p.price).to be >= last
                 last = p.price
+            end
+        end
+    end
+
+    describe 'price and dist sort desc' do
+        it "takes a list of products and returns distance to each sorted by price and dist desc" do
+            products = Product.all
+            Product.generate_distances(products, "4200 Fifth Ave, Pittsburgh, PA 15260")
+            products = Product.order_by_price_dist(products, false)
+            last = 1000000000000
+            last_p = 1000000000000
+            products.each do |p|
+                expect([p.distance <= last, p.price <= last_p]).to include(true)
+                last = p.distance
+                last_p = p.price
+            end
+        end
+    end
+    describe 'price and dist sort asc' do
+        it "takes a list of products and returns distance to each sorted by price and dist asc" do
+            products = Product.all
+            Product.generate_distances(products, "4200 Fifth Ave, Pittsburgh, PA 15260")
+            products = Product.order_by_price_dist(products, true)
+            last = -1000
+            last_p = -1000
+            products.each do |p|
+                expect([p.distance >= last, p.price >= last_p]).to include(true)
+                last = p.distance
+                last_p = p.price
             end
         end
     end

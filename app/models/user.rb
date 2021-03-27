@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
     # barcodes is an array of strings
     # radius is a float
     # loc = request.location.address but can only do request in controller
-    # example usage: 'User.get_applicable_stores(["043765009345", "194721725820"],10000,session[:location])'
+    # example usage: 'User.get_applicable_stores(["043765009345", 
+    #                 "194721725820"], 10000,session[:location])'
     barcodes = barcodes.sort
 
     # First, get all products that has an applicable barcode ID
@@ -20,12 +21,14 @@ class User < ActiveRecord::Base
     comp_info = Hash.new
     products.each do |p|
       if p.distance <= radius # enforce radius
-        if comp_to_barcodes.key? (p.company_id) == false or comp_to_barcodes[p.company_id].nil?
+        if comp_to_barcodes.key? (p.company_id) == false \
+           or comp_to_barcodes[p.company_id].nil?
           comp_to_barcodes[p.company_id] = Array.new
         end
         comp_to_barcodes[p.company_id].append(p.barcode)
 
-        if comp_info.key? (p.company_id) == false or comp_info[p.company_id].nil?
+        if comp_info.key? (p.company_id) == false \
+           or comp_info[p.company_id].nil?
           new_hash = Hash.new
           new_hash["name"] = p.company.name
           new_hash["address"] = p.company.address
@@ -50,7 +53,8 @@ class User < ActiveRecord::Base
     # Remove any company that is no longer in comp_to_barcodes
     # (unnecessary, but to be sure) or if distance is out of range
     comp_info.each do |k, v|
-      if comp_to_barcodes.key? (k) == false or comp_to_barcodes[k].nil? or v["distance"] > radius
+      if comp_to_barcodes.key? (k) == false \
+         or comp_to_barcodes[k].nil? or v["distance"] > radius 
         comp_info.delete(k)
       end
     end

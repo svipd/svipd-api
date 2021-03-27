@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.search(products, search)
-    searched_products = products.where("name LIKE ?  OR  description LIKE ? ", "%#{search}%")
+    searched_products = products.where("name LIKE ?  OR  description LIKE ? ", "%#{search}%", "%#{search}%")
     searched_products
   end
 

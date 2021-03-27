@@ -14,28 +14,41 @@
 ActiveRecord::Schema.define(version: 20150809022253) do
 
   create_table "products", force: :cascade, :id => false do |t|
-    t.integer "pid", :primary_key => true
-    t.string   "name"
-    t.text   "description"
-    t.integer "price"
-    t.integer "stock_count"
-    t.integer "company_id"
-    t.string "image_url"
-    t.string "barcode"
+    t.integer   "pid", :primary_key => true
+    t.string    "name"
+    t.text      "description"
+    t.integer   "price"
+    t.integer   "stock_count"
+    t.integer   "company_id"
+    t.string    "image_url"
+    t.string    "barcode"
   end
   create_table "companies", force: :cascade, :id => false do |t|
-    t.integer "company_id", :primary_key => true
-    t.string   "name"
-    t.text   "description"
-    t.string "address"
-    t.string "image_url"
+    t.integer   "company_id", :primary_key => true
+    t.string    "name"
+    t.text      "description"
+    t.string    "address"
+    t.string    "image_url"
   end
   # id is here implicitly
   create_table "stories", force: :cascade do |t|
     t.integer   "company_id"
-    t.string   "title"
-    t.text "description"
-    t.string   "image"
+    t.string    "title"
+    t.text      "description"
+    t.string    "image"
+  end
+  create_table "users", force: :cascade do |t|
+    t.integer   "id"
+    t.string    "products"
+    t.string    "wishlist"
+    t.integer   "user_id"
+  end
+  create_table "carts", force: :cascade do |t|
+    t.integer   "id"
+    t.string    "username"
+    t.string    "fname"
+    t.string    "lname"
+    t.string    "password"
   end
 
 end

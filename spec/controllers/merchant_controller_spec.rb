@@ -23,7 +23,7 @@ RSpec.describe MerchantController, :type => :controller do
 
   context "GET stories/:merchant_id" do
     it "renders the story template" do
-      get :stories, nil, {merchant_id: 1}
+      get :stories, params: {:merchant_id => 1}
       expect(response).to render_template("stories")
     end
   end  

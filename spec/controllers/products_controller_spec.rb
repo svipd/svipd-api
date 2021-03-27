@@ -36,7 +36,7 @@ RSpec.describe ProductsController, :type => :controller do
     expect(response).to render_template("index")
   end  
   it "renders the product index template with search" do
-    get :index, {:search => "t"}
+    get :index, params: {:search => "t"}
     expect(response).to render_template("index")
   end  
   it "returns a 200" do
@@ -50,19 +50,19 @@ RSpec.describe ProductsController, :type => :controller do
   end 
   context "GET show/:id" do
     it "renders the product show template" do
-      get :show, id: 1
+      get :show, params: {id: 1}
       expect(response).to render_template("show")
     end
   end
   context "GET edit/:id" do
     it "renders the product edit template" do
-      get :edit, id: 1
+      get :edit, params: {id: 1}
       expect(response).to render_template("edit")
     end
   end
   context "PATCH show/:id" do
     it "renders the product update template with sad path" do
-      get :update, id: 1
+      get :update, params: {id: 1}
       expect(response).to redirect_to("/products/merchant-index")
       expect(flash[:notice]).to be_present
     end
@@ -70,7 +70,7 @@ RSpec.describe ProductsController, :type => :controller do
   # the following does not work right now
   context "PATCH show/:id" do
     it "renders the product update template with sad path" do
-      get :update, {:id => 1, :product_params => product}
+      get :update, params: {:id => 1, :product_params => product}
       expect(response).to redirect_to("/products/merchant-index")
       expect(flash[:notice]).to be_present
     end
@@ -91,7 +91,7 @@ RSpec.describe ProductsController, :type => :controller do
   context "POST create" do
     it "renders the product new template with create and with a product" do
       product.id = nil
-      post :create, {:product => product}, merchant_id: 1
+      post :create, params: {:product => product, merchant_id: 1}
       expect(response).to redirect_to("/products/merchant-index")
       expect(flash[:notice]).to be_present
     end
@@ -100,7 +100,7 @@ RSpec.describe ProductsController, :type => :controller do
   describe "DELETE#destroy" do
 
     it "Delete requeted product" do
-      delete :destroy, {:id => product.id}
+      delete :destroy, params: {:id => product.id}
       expect(response).to have_http_status(302)
     end
   end

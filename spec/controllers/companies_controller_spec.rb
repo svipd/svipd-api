@@ -42,19 +42,19 @@ RSpec.describe CompaniesController, :type => :controller do
   end 
   context "GET show/:id" do
     it "renders the show template" do
-      get :show, params: {id: 1}
+      get :show, id: 1
       expect(response).to render_template("show")
     end
   end
   context "GET edit/:id" do
     it "renders the edit template" do
-      get :edit, params: {id: 1}
+      get :edit, id: 1
       expect(response).to render_template("edit")
     end
   end
   context "PATCH show/:id" do
     it "renders the update template with sad path" do
-      get :update, params: {id: 1}
+      get :update, id: 1
       expect(response).to redirect_to("/companies")
       expect(flash[:notice]).to be_present
     end

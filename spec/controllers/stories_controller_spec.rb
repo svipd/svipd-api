@@ -29,19 +29,19 @@ RSpec.describe StoriesController, :type => :controller do
     end
     let(:story) { FactoryGirl.create(:story) }
   context "GET show/:id" do
-    it "renders the story show template" do
-      get :show, params: {:id => 1}
+    it "renders the product show template" do
+      get :show, id: 4
       expect(response).to render_template("show")
     end
   end
   context "GET new" do
-    it "renders the story new template" do
+    it "renders the product new template" do
       get :new
       expect(response).to render_template("new")
     end
   end
   context "POST create" do
-    it "renders the story new template with create" do
+    it "renders the product new template with create" do
       post :create
       expect(response).to redirect_to("/merchant/stories")
     end
@@ -49,7 +49,7 @@ RSpec.describe StoriesController, :type => :controller do
   describe "DELETE#destroy" do
 
     it "Delete requested story" do
-      delete :destroy, params: {:id => story.id}
+      delete :destroy, {:id => story.id}
       expect(response).to have_http_status(302)
     end
   end

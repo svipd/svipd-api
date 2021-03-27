@@ -63,7 +63,7 @@
                     <%= story.description %>
                   </p>
 
-                  <button class = "btn gold_col btn-lg" style ="background-color: #F2C94C;">See more</button>
+                  <%= link_to "See more", company_path(story.company), :class => "btn gold_col btn-lg", :style => "background-color: #F2C94C;"%>
                 </div>
 
               </div>

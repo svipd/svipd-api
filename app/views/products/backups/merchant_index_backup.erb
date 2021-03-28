@@ -1,0 +1,42 @@
+<%= render "common/header_merchant" %>
+<div class="container">
+  <h2>Products</h2>
+
+  <% unless @go_back %>
+    <%= form_tag products_by_company_id_path, method: :get, id: 'search' do %>
+      Search Products:
+      <%= text_field "search", :search, :class => 'form-control' %>
+      <%= submit_tag 'Search!', id: 'search_submit', class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+  <% if @go_back %>
+    <%= link_to 'Back', products_by_company_id_path, :class => 'btn btn-primary' %>
+  <% end %>
+
+  <table class="table table-striped col-md-12" id="products">
+    <thead>
+    <th>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Price</td>
+    <td>Stock Units Avail.</td>
+    <!--<td>Company</td>-->
+    </th>
+    </thead>
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.pid %></td>
+        <td><%= link_to product.name, product_path(product.pid) %></td>
+        <td><%= product.description %></td>
+        <td>$<%= product.price %></td>
+        <td><%= product.stock_count %></td>
+        <!--<td><%#= link_to product.company.name, company_path(product.company_id) %></td>-->
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% unless @go_back %>
+    <%= link_to 'Add new product', new_product_path, :class => 'btn btn-primary' %>
+  <% end %>
+</div>

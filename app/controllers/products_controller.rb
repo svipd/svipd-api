@@ -91,7 +91,23 @@ class ProductsController < ApplicationController
   end
 
   def merchant_index
+    if session[:merchant_id] == nil
+      redirect_to merchant_login_path
+    end
+    @go_back = false
     @products = Product.where(company_id: session[:merchant_id]).all
+    search = params[:search]
+    if search != nil
+      @go_back = true
+      @products = Product.case_insensitive_search(@products, search["search"])
+    end
+    if params[:sort] != nil
+      if params[:sort] == "name"
+        @products = Product.order_by_name(@products, params[:direction] == "asc" ? true : false)
+      else
+        @products = Product.order_by_price(@products, params[:direction] == "asc" ? true : false)
+      end
+    end
   end
 
   private

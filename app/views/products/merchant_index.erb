@@ -1,35 +1,160 @@
+<style>
+
+    .product_image {
+        height: 120px;
+        border-radius: 100px;
+        width: 120px;
+        object-fit: cover;
+        border: 2px solid black;
+
+    }
+
+    .btn-toggle-colors {
+        background-color: #797979;
+        color: #fff;
+        width: 100px;
+        font-weight: bold;
+    }
+
+
+    .table-striped > tbody > tr:nth-child(2n+1) > td {
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(240,183,160,1) 0%, rgba(76,225,242,1) 0%, rgba(76,225,242,0.33967090254070376) 100%);
+        font-weight: normal;
+
+    }
+
+    .table-striped > tbody > tr:nth-child(2n) > td {
+        background-color: #333333;
+        font-weight: normal;
+        color: white;
+
+    }
+
+    .table-striped > tbody > tr:nth-child(2n) > td .product_image {
+        border: 2px solid #F2C94C;
+
+    }
+
+    .table-striped > tbody > tr:nth-child(2n) > td .btn-toggle-colors {
+        border: 2px solid #F2C94C;
+        background-color: #F2C94C;
+        color: #fff;
+        font-color: #fff;
+    }
+
+    .sort_optn {
+        color: black;
+        text-decoration: none;
+    }
+
+    .outliner {
+        border-top: 1px solid #c1c1c1;
+        padding-top: 10px;
+        width: 95%;
+        margin: auto;
+    }
+
+</style>
+
 <%= render "common/header_merchant" %>
-<div class="container">
-<h2>Products</h2>
+<div class="container-fluid">
+  <div class = "pad-action pad-left">
+    <h2>Products </h2>
+    <% unless @go_back %>
+      <%= form_tag products_by_company_id_path, method: :get, id: 'search' do %>
+        <%= text_field "search", :search, :class => 'form-control', style: "width: 350px; display:inline-block;border: 1px solid black;" %>
+        <%= submit_tag 'Search', id: 'search_submit', class: 'btn yellow_col black_col btn-lg', style: "display:inline-block;padding: 4px 45px;border-radius: .25rem;" %>
+      <% end %>
+    <% end %>
+    <% if @go_back %>
+      <%= link_to 'Back', products_by_company_id_path, :class => 'btn yellow_col black_col btn-lg', :style => 'padding: 5px 45px;border-radius: .25rem;'%>
+    <% end %>
+    <br />
+    <div class = "row" >
+      <div class = "col-2 my-auto" style = "text-align: center; align-items: center;">
+      </div>
+      <div class = "col-2 my-auto" style = "text-align: center; align-items: center;">
+        <% if params[:sort] != nil && params[:sort] == "name" %>
+          <%= link_to "Name", request.query_parameters.merge({:sort => "name", :direction => "desc"}) %>
+        <% else %>
+          <%= link_to "Name", request.query_parameters.merge({:sort => "name", :direction => "asc"}) %>
+        <% end %>
+      </div>
 
-<%= form_tag products_path, method: :get, id: 'search' do %>
-  Search Products:
-  <%= text_field "search", :search, :class => 'form-control' %>
-  <%= submit_tag 'Search!', id: 'search_submit', class: 'btn btn-primary' %>
-<% end %>
+      <div class = "col-3 my-auto" style = "text-align: center; align-items: center;">
+        Description
+      </div>
 
-<table class="table table-striped col-md-12" id="products">
-  <thead>
-  <th>
-  <td>Name</td>
-  <td>Description</td>
-  <td>Price</td>
-  <td>Stock Units Avail.</td>
-  <td>Company</td>
-  </th>
-  </thead>
-  <tbody>
-  <% @products.each do |product| %>
-    <tr>
-      <td><%= product.pid %></td>
-      <td><%= link_to product.name, product_path(product.pid) %></td>
-      <td><%= product.description %></td>
-      <td>$<%= product.price %></td>
-      <td><%= product.stock_count %></td>
-      <td><%= link_to product.company.name, company_path(product.company_id) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= link_to 'Add new product', new_product_path, :class => 'btn btn-primary' %>
+      <div class = "col-2 my-auto" style = "text-align: center; align-items: center;">
+        <% if params[:sort] != nil && params[:sort] == "price" %>
+          <%= link_to "Price", request.query_parameters.merge({:sort => "price", :direction => "desc"}) %>
+        <% else %>
+          <%= link_to "Price", request.query_parameters.merge({:sort => "price", :direction => "asc"}) %>
+        <% end %>
+      </div>
+
+      <div class = "col-1 my-auto" style = "text-align: center; align-items: center;">
+        Stock Count
+      </div>
+
+      <div class = "col-2 my-auto" style = "text-align: center; align-items: center;">
+      </div>
+
+    </div>
+
+    <br />
+
+
+
+    <% @products.each do |product| %>
+
+
+
+      <div class = "row">
+
+        <div class = "row">
+          <div class = "col-12 outliner"></div>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <img src = "<%= product.image_url %>" class = "product_image"/>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <span><%=product.name%></span><br />
+        </div>
+
+        <div class = "col-3 my-auto">
+          <p class="text-justify" style = "text-align: justify;align-items: center; text-justify: inter-word; margin-top: 0px; margin-bottom: 0px;">
+            <%= product.description %>
+          </p>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          $<%= product.price %>
+        </div>
+
+        <div class = "col-1 my-auto"  style = "text-align: center;align-items: center;">
+          <%= product.stock_count %>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <a class = "btn btn-toggle-colors" href = "<%= product_path(product.pid) %>">Edit</a>
+        </div>
+      </div>
+
+
+
+
+      <!--<td><%= link_to product.company.name, company_path(product.company_id) %></td>-->
+      <br />
+
+    <% end %>
+
+
+
+    <br />
+    <%= link_to 'Add new product', new_product_path, :class => 'btn yellow_col black_col btn-lg', :style => 'padding: 5px 45px;border-radius: .25rem;'%>
+  </div>
 </div>

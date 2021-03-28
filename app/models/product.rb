@@ -61,6 +61,15 @@ class Product < ActiveRecord::Base
     searched_products
   end
 
+  def self.order_by_name(products, asc)
+    if asc == true
+      searched_products = products.order(name: :asc)
+    else
+      searched_products = products.order(name: :desc)
+    end
+    searched_products
+  end
+
   def self.order_by_dist(products, asc)
     # NOTE: must run generate distances first!
     if asc == true

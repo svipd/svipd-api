@@ -89,7 +89,7 @@ class ProductsController < ApplicationController
     redirect_to products_by_company_id_path
   end
 
-  def merchant_index
+  def merchant_products
     if session[:merchant_id] == nil
       redirect_to merchant_login_path
     end

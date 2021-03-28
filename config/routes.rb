@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  match '/products/merchant-index' => 'products#merchant_index', :as => "products_by_company_id", :via => "get"
+  match '/products/merchant-products' => 'products#merchant_products', :as => "products_by_company_id", :via => "get"
   resources :products
   resources :companies
 

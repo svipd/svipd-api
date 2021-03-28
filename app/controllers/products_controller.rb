@@ -90,11 +90,20 @@ class ProductsController < ApplicationController
   end
 
   def merchant_products
-    if session[:merchant_id] == nil
-      redirect_to merchant_login_path
+    @hide_products_in_title = true
+    merchant_id = nil
+    if session[:merchant_id] != nil
+      merchant_id = session[:merchant_id]
+    else
+      merchant_id = params[:merchant_id]
+      @read_only_merchant = true
+    end
+    @company = Company.find(merchant_id)
+    if @read_only_merchant
+      @distance = Company.company_address_to_user_address_distance(@company.address, request.location.address)
     end
     @go_back = false
-    @products = Product.where(company_id: session[:merchant_id]).all
+    @products = Product.where(company_id: merchant_id).all
     search = params[:search]
     if search != nil
       @go_back = true

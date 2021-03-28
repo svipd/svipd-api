@@ -60,6 +60,11 @@
 <%= render "common/header_merchant" %>
 <div class="container-fluid">
   <div class = "pad-action pad-left">
+    <% if @read_only_merchant %>
+      <h2> <%=@company.name%> </h2>
+      <h6> <%=@company.address%> </h6>
+      <h6> <%=@distance.round(2) %> mi away </h6>
+    <% end %>
     <h2>Products </h2>
     <% unless @go_back %>
       <%= form_tag products_by_company_id_path, method: :get, id: 'search' do %>
@@ -98,8 +103,10 @@
         Stock Count
       </div>
 
-      <div class = "col-2 my-auto" style = "text-align: center; align-items: center;">
-      </div>
+      <% unless @read_only_merchant %>
+        <div class = "col-2 my-auto" style = "text-align: center; align-items: center;">
+        </div>
+      <% end %>
 
     </div>
 
@@ -139,9 +146,11 @@
           <%= product.stock_count %>
         </div>
 
-        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
-          <a class = "btn btn-toggle-colors" href = "<%= product_path(product.pid) %>">Edit</a>
-        </div>
+        <% unless @read_only_merchant %>
+          <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+            <a class = "btn btn-toggle-colors" href = "<%= product_path(product.pid) %>">Edit</a>
+          </div>
+        <% end %>
       </div>
 
 
@@ -155,6 +164,8 @@
 
 
     <br />
-    <%= link_to 'Add new product', new_product_path, :class => 'btn yellow_col black_col btn-lg', :style => 'padding: 5px 45px;border-radius: .25rem;'%>
+    <% unless @read_only_merchant %>
+      <%= link_to 'Add new product', new_product_path, :class => 'btn yellow_col black_col btn-lg', :style => 'padding: 5px 45px;border-radius: .25rem;'%>
+    <% end %>
   </div>
 </div>

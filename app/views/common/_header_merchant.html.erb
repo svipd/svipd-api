@@ -9,18 +9,29 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <%= link_to 'Home', merchant_index_path, :class => 'nav-link active' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Stories', merchant_stories_path, :class => 'nav-link active' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Products', products_by_company_id_path, :class => 'nav-link active' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Log Out', merchant_login_path, :class => 'nav-link active' %>
-              </li>
+              <!--<li class="nav-item">
+                <%#= link_to 'Home', merchant_index_path, :class => 'nav-link active' %>
+              </li>-->
+              <% if @read_only_merchant %>
+                <li class="nav-item">
+                  <%= link_to 'Home', root_path, :class => 'nav-link active' %>
+                </li>
+              <% end %>
+              <% unless @read_only_merchant %>
+                <% unless @hide_stories_in_title %>
+                  <li class="nav-item">
+                    <%= link_to 'Stories', merchant_stories_path, :class => 'nav-link active' %>
+                  </li>
+                <% end %>
+                <% unless @hide_products_in_title %>
+                  <li class="nav-item">
+                    <%= link_to 'Products', products_by_company_id_path, :class => 'nav-link active' %>
+                  </li>
+                <% end %>
+                <li class="nav-item">
+                  <%= link_to 'Log Out', merchant_logout_path, :class => 'nav-link active' %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>

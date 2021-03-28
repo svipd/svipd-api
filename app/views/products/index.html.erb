@@ -231,8 +231,7 @@
                   <p class="card-text" style = "text-align: justify;">UPC/SKU: <%= product.barcode %></p>
                 </div>
                 <div class = "body" style = "float:right;">
-                  <%= link_to product.company.name, company_path(product.company_id), class: 'btn', style: 'background-color:black;color:#F2C94C;' %>
-
+                  <%= link_to product.company.name, products_by_company_id_path({:merchant_id => product.company_id}), class: 'btn', style: 'background-color:black;color:#F2C94C;' %>
                 </div>
               </div>
             </div>

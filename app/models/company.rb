@@ -20,7 +20,7 @@ class Company < ActiveRecord::Base
     @distances = Hash.new
     @companies.each do |c|
       if c.address.nil? == false
-        dist = user_addr.distance_to(c.address)
+        dist = 2000#user_addr.distance_to(c.address)
         @distances[c.company_id] = dist
       end
     end

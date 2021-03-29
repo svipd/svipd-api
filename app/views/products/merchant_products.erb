@@ -68,12 +68,13 @@
     <h2>Products </h2>
     <% unless @go_back %>
       <%= form_tag products_by_company_id_path, method: :get, id: 'search' do %>
+        <%= hidden_field "search", :merchant_id, :value => @merchant_id %>
         <%= text_field "search", :search, :class => 'form-control', style: "width: 350px; display:inline-block;border: 1px solid black;" %>
         <%= submit_tag 'Search', id: 'search_submit', class: 'btn yellow_col black_col btn-lg', style: "display:inline-block;padding: 4px 45px;border-radius: .25rem;" %>
       <% end %>
     <% end %>
     <% if @go_back %>
-      <%= link_to 'Back', products_by_company_id_path, :class => 'btn yellow_col black_col btn-lg', :style => 'padding: 5px 45px;border-radius: .25rem;'%>
+      <%= link_to 'Back', products_by_company_id_path({:merchant_id => request.query_parameters["search"]["merchant_id"]}), :class => 'btn yellow_col black_col btn-lg', :style => 'padding: 5px 45px;border-radius: .25rem;'%>
     <% end %>
     <br />
     <div class = "row" >

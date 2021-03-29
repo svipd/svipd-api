@@ -54,8 +54,13 @@ ActiveRecord::Schema.define(version: 20150809022253) do
   add_index :users, :username, unique: true
 
   create_table "carts", force: :cascade do |t|
-    t.integer    "user_id"
-    t.string    "products"
-    t.string    "wishlist"
+    t.integer   "user_id"
+    t.text      "products"
+    t.text      "wishlist"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer   "user_id"
+    t.text      "likedlist"
   end
 end

@@ -11,6 +11,12 @@ Given /the following companies exist/ do |companies_table|
   end
 end
 
+Given /the following users exist/ do |users_table|
+  users_table.hashes.each do |user|
+    User.create user
+  end
+end
+
 Given /the following stories exist/ do |stories_table|
   stories_table.hashes.each do |story|
     Story.create story

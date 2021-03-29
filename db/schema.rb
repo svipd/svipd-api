@@ -29,10 +29,14 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.text      "description"
     t.text      "address"
     t.text      "image_url"
+    t.text      "email"
+    t.boolean   "approved"
     t.text      "username"
     t.text      "password"
   end
-  # id is here implicitly
+
+  add_index :companies, :username, unique: true
+
   create_table "stories", force: :cascade do |t|
     t.integer   "company_id"
     t.string    "title"
@@ -40,15 +44,17 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.string    "image"
   end
   create_table "users", force: :cascade do |t|
-    t.string    "products"
-    t.string    "wishlist"
-    t.integer   "user_id"
-  end
-  create_table "carts", force: :cascade do |t|
     t.string    "username"
     t.string    "fname"
     t.string    "lname"
     t.string    "password"
   end
 
+  add_index :users, :username, unique: true
+
+  create_table "carts", force: :cascade do |t|
+    t.integer    "user_id"
+    t.string    "products"
+    t.string    "wishlist"
+  end
 end

@@ -20,8 +20,7 @@ class User < ActiveRecord::Base
 
     # Next, get distance for all applicable products
     products = Product.gen_dist_and_order(products, loc, "dist", true)
-    puts "1"
-    puts products.to_json
+
     # Make a hash that maps company_id to barcodes to determine
     # eligibility
     # Make a hash that maps company_id to relevant info like
@@ -29,8 +28,6 @@ class User < ActiveRecord::Base
     comp_to_barcodes = Hash.new
     comp_info = Hash.new
     products.each do |p|
-      puts "2"
-      puts p.to_json
       if p.distance <= radius # enforce radius
         if comp_to_barcodes.key? (p.company_id) == false \
            or comp_to_barcodes[p.company_id].nil?
@@ -53,11 +50,6 @@ class User < ActiveRecord::Base
       end
     end
 
-    puts "3"
-    puts comp_info.inspect
-    puts "4"
-    puts comp_to_barcodes.inspect
-
     # Go through comp_to_barcodes and remove companies that do not
     # have all the products needed
     comp_to_barcodes.each do |k,v|
@@ -66,9 +58,6 @@ class User < ActiveRecord::Base
         comp_to_barcodes.delete(k)
       end
     end
-
-    puts "5"
-    puts comp_to_barcodes.inspect
 
     # Remove any company that is no longer in comp_to_barcodes
     # (unnecessary, but to be sure) or if distance is out of range
@@ -79,22 +68,13 @@ class User < ActiveRecord::Base
       end
     end
 
-    puts "6"
-    puts comp_info.inspect
-
     # Make a list of companies with (name, address, distance, total)
     companies = Array.new
     comp_info.each do |k, v|
       companies.append(v)
     end
 
-    puts "7"
-    puts companies.to_json
-
     companies = companies.sort_by { |h| h["total"] }
-
-    puts "8"
-    puts companies.to_json
 
     return companies
   end

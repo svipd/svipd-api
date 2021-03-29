@@ -6,7 +6,10 @@ class LoginController < ApplicationController
   def merchant_login_post
     #insert authentication here, later
 
-    merchants = Company.where(name: params[:username])
+    merchants = Company.where("LOWER (username) = ? and password = ?",  
+                              params[:username].downcase, 
+                              Digest::MD5.hexdigest(params[:password]))
+    puts "ghasged: #{Digest::MD5.hexdigest(params[:password])}"
     count = merchants.all.count
 
     if count > 0

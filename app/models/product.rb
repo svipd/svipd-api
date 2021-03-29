@@ -31,6 +31,7 @@ class Product < ActiveRecord::Base
     if type == "price"
       products = Product.order_by_price(products, asc) #sort by asc price -> must go before generate dist
     end
+    puts "HERE1"
     Product.generate_distances(products, loc)
     if type == "dist"
       products = Product.order_by_dist(products, asc) #sort by asc dist -> must go after generate dist
@@ -83,7 +84,8 @@ class Product < ActiveRecord::Base
   def self.generate_distances(products, loc)
     comp_dist = Hash.new
     begin
-    comp_dist = Company.company_to_current_user_by_distance(loc)
+      puts "HERE2"
+      comp_dist = Company.company_to_current_user_by_distance(loc)
     rescue
       comp_dist = Hash.new
     end

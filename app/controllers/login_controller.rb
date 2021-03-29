@@ -1,11 +1,17 @@
 class LoginController < ApplicationController
 
+  def user_login
+    @type = "user"
+  end
+
   def merchant_login
+    @type = "merchant"
+    if session[:merchant_id] != nil
+      redirect_to products_by_company_id_path
+    end
   end
 
   def merchant_login_post
-    #insert authentication here, later
-
     merchants = Company.where("LOWER (username) = ? and password = ?",  
                               params[:username].downcase, 
                               Digest::MD5.hexdigest(params[:password]))
@@ -13,14 +19,10 @@ class LoginController < ApplicationController
     if count > 0
       session[:merchant_id] =  merchants.first.company_id
       redirect_to products_by_company_id_path
-      #redirect_to products_by_company_id_path({:merchant_id => merchants.first.company_id})
     else
       redirect_to merchant_login_path
       flash[:warning] = "Login failed. Please try again. #{Digest::MD5.hexdigest(params[:password])} and #{Company.all.inspect}"
     end
-
-    #session[:merchant_id] = 1
-    #redirect_to products_by_company_id_path
   end
 
   def merchant_logout

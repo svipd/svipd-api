@@ -197,7 +197,7 @@
 <script>
     $(document).ready(function() {
         $("input").on('click', function (e) {
-            if (e.target.defaultValue !== 'Add to Cart')
+            if (e.target.defaultValue !== 'Add to Wishlist')
                 return;
             var x = document.getElementById("fader");
             x.style.display = "block";
@@ -265,7 +265,7 @@
                     <p class="card-text" style = "text-align: justify;">UPC/SKU: <%= product.barcode %></p>
                     <center>
 
-                      <input value = "Add to Cart" type = "button" class="btn grey_col btn-sm" id="<%= product.barcode %>">
+                      <input value = "Add to Wishlist" type = "button" class="btn grey_col btn-sm" id="<%= product.barcode %>">
                     </center>
                   </div>
                   <div class = "body" style = "float:right;">

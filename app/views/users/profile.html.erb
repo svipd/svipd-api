@@ -64,21 +64,9 @@
 <% end %>
 <div class="container-fluid">
   <div class = "pad-action pad-left">
-    <h2>Wishlist </h2>
+    <h2><% if session[:fname] %> <%= session[:fname] %>'s <% end %>Liked Products</h2>
 
-    <%= form_tag applicable_stores_path, method: :get, id: 'distance' do %>
-      Search for wishlist at merchants within
-      <%= text_field "distance", :distance, :class => 'form-control', style: "width: 40px; display:inline-block;border: 1px solid black;" %>
-      mi
-      <%= submit_tag 'Search', id: 'search_submit', class: 'btn yellow_col black_col btn-lg', style: "margin-left: 20px; display:inline-block;padding: 4px 45px;border-radius: .25rem;" %>
-
-    <% end %>
-
-    <br/>
-    <br/>
-    <br/>
-
-    <% @products.each do |product| %>
+    <% @likes.each do |product| %>
 
       <div class = "row" style = "padding-bottom:10px;">
 
@@ -96,10 +84,32 @@
 
 
           <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
-            <%= button_to 'Delete',  {:controller => "users", :action => "delete_from_wishlist", :barcode => product.barcode} , {:method=>:post, :class => "btn btn-toggle-colors", :style => "font-weight: lighter;"} %>
+            <%= button_to 'Remove',  {:controller => "users", :action => "delete_from_likedlist", :barcode => product.barcode} , {:method=>:post, :class => "btn btn-toggle-colors", :style => "font-weight: lighter;"} %>
           </div>
       </div>
     <% end %>
+    <br/>
+    <br/>
+
+    <h2><% if session[:fname] %> <%= session[:fname] %>'s <% end %>Wish List</h2>
+    <% @products.each do |product| %>
+
+      <div class = "row" style = "padding-bottom:10px;">
+
+        <div class = "row">
+          <div class = "col-12 outliner"></div>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <img src = "<%= product.image_url %>" class = "product_image"/>
+        </div>
+
+        <div class = "col-8 my-auto"  style = "text-align: center;align-items: center;">
+          <span><%=product.name%></span><br />
+        </div>
+      </div>
+    <% end %>
+    <a href="/users/wishlist" style="color: inherit; ">Go to wishlist</a>
     <br />
     <br />
     <br />

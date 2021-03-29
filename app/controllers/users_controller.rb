@@ -73,6 +73,61 @@ class UsersController < ApplicationController
       session[:like] = liked
     end
   end
+  
+  def delete_from_likedlist
+    barcode = params[:barcode]
+    like = session[:like]
+    puts like.inspect
+    likedlist = like["likedlist"]
+    puts likedlist.inspect
+    likedlist = likedlist.split(',')
+    likedlist.delete(barcode)
+    puts barcode.inspect
+    puts likedlist.inspect
+    likedlist = likedlist.join(",")
+    @likes = Like.find(like["id"].to_i)
+    @likes.update({:likedlist => likedlist})
+    like["likedlist"] = likedlist
+    session[:like] = like
+    redirect_to user_profile_path
+  end
+
+  def profile
+    if session[:user_logged_in]
+      liked = session[:like]
+      likedlist = nil
+      if liked != nil
+        likedlist = liked["likedlist"]
+      end
+      if likedlist == nil
+        likedlist = []
+      else
+        likedlist = likedlist.split(',')
+      end
+      @likes = []
+      likedlist.each do |product|
+        product = Product.find_by("barcode": product)
+        @likes.push(product)
+      end
+
+
+      
+      cart = session[:cart]
+      wishlist = cart["wishlist"]
+      if wishlist == nil
+        wishlist = []
+      else
+        wishlist = wishlist.split(',')
+      end
+      @products = []
+      wishlist.each do |product|
+        product = Product.find_by("barcode": product)
+        @products.push(product)
+      end
+    else
+      redirect_to user_profile_path
+    end
+  end
 
   def add_to_wishlist
     head :no_content

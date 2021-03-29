@@ -1,15 +1,18 @@
 class StoriesController < ApplicationController
 
-  $user_id_login_render = -1;
+  $user_id_login_render = -1
 
   def show
+    @hide_stories_in_title = true
     @story = Story.find(params[:id])
   end
 
   def new
+    @hide_stories_in_title = true
   end
 
   def create
+    @hide_stories_in_title = true
     begin
       story_json = params[:story]
       @story = Story.create!(title: story_json[:title],
@@ -25,20 +28,16 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    @hide_stories_in_title = true
     @story = Story.find(params[:id])
     @story.destroy
     redirect_to merchant_stories_path
   end
 
-
   def stories_paths
-
+    @hide_stories_in_title = true
     @stor = Story.find(params[:id])
     puts "WE ARE HERE NOW"
     puts @stor.title
-
   end
-
-
-
 end

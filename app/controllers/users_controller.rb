@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         redirect_to new_user_path
       rescue => err
         flash[:warning] = "#{err}"
-        if flash[:warning].include? "username_UQ"
+        if flash[:warning].include? "username"
           flash[:warning] = "That username already exists. Please try a different one."
         end
         redirect_to new_user_path

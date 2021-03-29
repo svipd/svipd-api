@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150809022253) do
   create_table "companies", force: :cascade, :id => false do |t|
     t.integer   "company_id", :primary_key => true
     t.text      "name"
-    t.text      "description"
+    t.string    "description", :limit => 50
     t.text      "address"
     t.text      "image_url"
     t.text      "email"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150809022253) do
   end
 
   add_index :companies, :username, unique: true
+  change_column_null :companies, :name, false
 
   create_table "stories", force: :cascade do |t|
     t.integer   "company_id"

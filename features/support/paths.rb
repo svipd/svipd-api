@@ -26,6 +26,8 @@ module NavigationHelpers
       products_path
     when /^the companies page$/ then
       companies_path
+    when /^the merchant login page $/ then
+      merchant_login_path
     when /^the details page for "(.*)"$/ then
     when /^the Similar Movies page for "(.*)"$/ then
       movies_path()

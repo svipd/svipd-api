@@ -108,6 +108,17 @@ Feature: Do homepage features
     And I press "Login"
     Then I should see "Products"
 
+  Scenario: Logged in merchant should see products directly if he opens login again
+    When I go to the home page
+    And I follow "Login"
+    And I follow "Are you a merchant?"
+    And  I fill in "username" with "dsfd"
+    And  I fill in "password" with "x"
+    And I press "Login"
+    Then I should see "Products"
+    And I go to the merchant login page
+    Then I should see "Products"
+
   Scenario: Failed login as a merchant
     When I go to the home page
     And I follow "Login"
@@ -139,7 +150,7 @@ Feature: Do homepage features
     And  I fill in "company_username" with "dsfd"
     And  I fill in "company_password" with "abcdeghi"
     And I press "Create Merchant Account"
-    Then I should see "UNIQUE constraint failed"
+    Then I should see "That username already exists. Please try a different one"
 
   Scenario: Merchant sign up fails because the password is shorter than 8 characters
     When I go to the home page

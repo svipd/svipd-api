@@ -9,9 +9,9 @@ class CompaniesController < ApplicationController
   def index
     @companies = Company.all
   end
- # def initialize
-    
- # end
+  # def initialize
+
+  # end
 
   def new
     # default: render 'new' template
@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
         redirect_to merchant_login_path
       rescue => err
         flash[:warning] = "#{err}"
-        if flash[:warning].include? "username_UQ"
+        if flash[:warning].include? "username_UQ" or flash[:warning].include? "UNIQUE"
           flash[:warning] = "That username already exists. Please try a different one."
         end
         redirect_to new_company_path
@@ -44,16 +44,10 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    begin
-      @company = Company.find params[:id]
-      @company.update(company_params)
-      flash[:notice] = "#{@company.name} was successfully updated."
-      redirect_to company_path(@company)
-    rescue => err
-      flash[:notice] = "Error updating: #{err}"
-      puts "ERROR: #{err}"
-      redirect_to companies_path
-    end
+    @company = Company.find params[:id]
+    @company.update(company_params)
+    flash[:notice] = "#{@company.name} was successfully updated."
+    redirect_to company_path(@company)
   end
 
   def destroy

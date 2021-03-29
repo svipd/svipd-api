@@ -12,6 +12,7 @@ class LoginController < ApplicationController
     if count > 0
       session[:user_logged_in] = true
       session[:user] = users.first
+      session[:fname] = users.first.fname
       session[:cart] = users.first.cart
       redirect_to root_path
     else

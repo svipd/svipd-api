@@ -19,13 +19,15 @@ end
 
 
 RSpec.describe CompaniesController, :type => :controller do
-  FactoryGirl.define do
+  FactoryBot.define do
     factory :company do
-        name "qty"
-        description "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae ipsum consectetur, semper dolor sed, dignissim enim."
+        name {"qty"}
+        description {"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae ipsum consectetur, semper dolor sed, dignissim enim."}
+        password {"sjkdfjksdhfsd"}
+        username {"askfjsdjkfksjd"}
       end
     end
-    let(:company) { FactoryGirl.create(:company) }
+    let(:company) { FactoryBot.create(:company) }
 
   it "renders the index template" do
     get :index
@@ -63,12 +65,6 @@ RSpec.describe CompaniesController, :type => :controller do
     it "renders the new template" do
       get :new
       expect(response).to render_template("new")
-    end
-  end
-  context "POST create" do
-    it "renders the new template with create" do
-      post :create
-      expect(response).to redirect_to("/companies")
     end
   end
 end

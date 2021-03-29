@@ -1,13 +1,81 @@
-<h2>Add a Company!</h2>
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
 
-<%= form_tag companies_path, :class => 'form' do %>
+<style>
+    @keyframes fade-1 {
+        0% { opacity: 1; }
+        33% { opacity: 0; }
+        66% { opacity: 0; }
+        75% {opacity: 1;}
+        95% {opacity: 1;}
+        100% { opacity: 1; }
+    }
+    @keyframes fade-2 {
+        0% { opacity: 0; }
+        33% { opacity: 1; }
+        66% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    .yellow_col{
+        background-color: #F2C94C;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .yellow_col:hover {
+        background-color: black;
+        color: white;
+        transition: all .2s;
+    }
+    .gray_col{
+        background-color: #90989C;
+        border-radius: 10px;
+        padding: 15px;
+        text-color: black;
+    }
+    .gray_col:hover{
+      background-color: black;
+      color: white;
+      transition: all .2s;
+    }
+    #footr{
+        background-color:black;
+    }
+
+    .link-secondary, li{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+        color: white;
+        text-decoration: none;
+    }
+
+    h5{ color:white; }
+</style>
+
+
+<%= render "common/header_login" %>
+<div style="margin:30px">
+<h2>We Are Glad You Are Here!</h2>
+<h3> Be ready to elevate your sells and brand to a whole new level! </h3>
+<%= form_tag companies_path, :class => 'form'  do %>
   <%= label :company, :name, 'Company Name', :class => 'col-form-label' %>
   <%= text_field :company, :name, :class => 'form-control' %>
   <%= label :company, :description, 'Description', :class => 'col-form-label'  %>
   <%= text_field :company, :description, :class => 'form-control' %>
   <%= label :company, :address, 'Address', :class => 'col-form-label'  %>
   <%= text_field :company, :address, :class => 'form-control' %>
+  <%= label :company, :email, 'Email', :class => 'col-form-label'  %>
+  <%= text_field :company, :email, :class => 'form-control' %>
+  <%= label :company, :image_url, 'Logo URL', :class => 'col-form-label'  %>
+  <%= text_field :company, :image_url, :class => 'form-control' %>
+  <%= label :company, :username, 'Username', :class => 'col-form-label'  %>
+  <%= text_field :company, :username, :class => 'form-control' %>
+  <%= label :company, :password, 'Password', :class => 'col-form-label'  %>
+  <%= password_field  :company, :password, :class => 'form-control' %>
   <br/>
-  <%= submit_tag 'Add Company', :class => 'btn btn-primary' %>
-  <%= link_to 'Cancel', companies_path, :class => 'btn btn-secondary' %>
+  <%= submit_tag 'Add Company', :class => 'btn yellow_col btn-lg ' %>
+  <%= link_to 'Cancel', companies_path, :class => 'btn gray_col btn-lg ' %>
 <% end %>
+</div>

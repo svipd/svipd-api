@@ -14,7 +14,9 @@ RSpec.describe Company, :type => :model do
     subject { described_class.new } # creates an ActiveRecord for Company with all nil fields
     it "is valid with valid attributes" do
         subject.name = "test"
-        subject.description = "test description goes here"
+        subject.description = "test description goes here"        
+        subject.password = "sjkdfjksdhfsd"
+        subject.username = "askfjsdjkfksjd"
         expect(subject).to be_valid
     end
     it "is not valid without a name" do

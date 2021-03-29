@@ -7,8 +7,8 @@ Feature: search for products
 Background: On svipd homepage
 
   Given the following companies exist:
-  | name                  | description | address                             | image_url | company_id  |
-  | Columbia University   | test        | 600 w 116th st, new york, ny 10027  |   "x"     | 1           |
+  | name                  | description | address                             | image_url | company_id  | username | password
+  | Columbia University   | test        | 600 w 116th st, new york, ny 10027  |   "x"     | 1           | dafdsfas | dsfsdfsd
 
   Given the following products exist:
   | pid | name          | description | price     | stock_count | company_id  |

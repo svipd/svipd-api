@@ -19,15 +19,15 @@ end
 
 
 RSpec.describe StoriesController, :type => :controller do
-  FactoryGirl.define do
+  FactoryBot.define do
     factory :story do
-        title "qty"
-        description "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae ipsum consectetur, semper dolor sed, dignissim enim."
-        image "x"
-        company_id 1
+        title {"qty"}
+        description {"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae ipsum consectetur, semper dolor sed, dignissim enim."}
+        image {"x"}
+        company_id {1}
       end
     end
-    let(:story) { FactoryGirl.create(:story) }
+    let(:story) { FactoryBot.create(:story) }
   context "GET new" do
     it "renders the product new template" do
       get :new

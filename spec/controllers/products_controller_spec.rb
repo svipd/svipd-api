@@ -20,18 +20,18 @@ end
 
 RSpec.describe ProductsController, :type => :controller do
 
-  FactoryGirl.define do
+  FactoryBot.define do
     factory :product do
-        name "qty"
-        description "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae ipsum consectetur, semper dolor sed, dignissim enim."
-        price 5
-        stock_count 50
-        company_id 1
-        barcode 1
-        image_url "http://www.x.com"
+        name {"qty"}
+        description {"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae ipsum consectetur, semper dolor sed, dignissim enim."}
+        price {5}
+        stock_count {50}
+        company_id {1}
+        barcode {1}
+        image_url {"http://www.x.com"}
       end
     end
-    let(:product) { FactoryGirl.create(:product) }
+    let(:product) { FactoryBot.create(:product) }
 
   it "renders the product index template" do
     get :index

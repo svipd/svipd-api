@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.text      "description"
     t.string    "address"
     t.string    "image_url"
+    t.string    "username"
+    t.string    "password"
   end
   # id is here implicitly
   create_table "stories", force: :cascade do |t|
@@ -38,13 +40,11 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.string    "image"
   end
   create_table "users", force: :cascade do |t|
-    t.integer   "id"
     t.string    "products"
     t.string    "wishlist"
     t.integer   "user_id"
   end
   create_table "carts", force: :cascade do |t|
-    t.integer   "id"
     t.string    "username"
     t.string    "fname"
     t.string    "lname"

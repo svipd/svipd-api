@@ -7,9 +7,9 @@ Feature: Do homepage features
 Background: On svipd homepage
 
   Given the following companies exist:
-  | name                  | description | address                             | image_url | company_id  |
-  | Columbia University   | test        | 600 w 116th st, new york, ny 10027  |   "x"     | 1           |
-  | Columbia University2   | test       | 600 w 116th st, new york, ny 10027  |   "x"     | 2           |
+  | name                  | description | address                             | image_url | company_id  | username | password
+  | Columbia University   | test        | 600 w 116th st, new york, ny 10027  |   "x"     | 1           | dsfd     | sdfsdffsdfsf
+  | Columbia University2   | test       | 600 w 116th st, new york, ny 10027  |   "x"     | 2           | dsfdsfsd | sdfksdjfksdkf
 
   Given the following products exist:
   | pid | name        | description | price     | stock_count | company_id  | image_url                                                                                                                        |

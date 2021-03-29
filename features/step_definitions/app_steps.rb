@@ -17,6 +17,12 @@ Given /the following users exist/ do |users_table|
   end
 end
 
+Given /the following carts exist/ do |carts_table|
+  carts_table.hashes.each do |cart|
+    Cart.create cart
+  end
+end
+
 Given /the following stories exist/ do |stories_table|
   stories_table.hashes.each do |story|
     Story.create story
@@ -45,6 +51,11 @@ Then /I should see all the products/ do
     step %{I should see "#{product.name}"}
   end
 end
+
+When /^I wait (\d+) seconds?$/ do |seconds|
+  sleep seconds.to_i
+end
+
 # Then the director of "(.*)" should be "(.*)"/ do |movie, director|
 #   # Make sure that all the movies in the app are visible in the table
 #   expect(Movie.find_by_title(movie).director == director)

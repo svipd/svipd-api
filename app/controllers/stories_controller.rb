@@ -33,11 +33,4 @@ class StoriesController < ApplicationController
     @story.destroy
     redirect_to merchant_stories_path
   end
-
-  def stories_paths
-    @hide_stories_in_title = true
-    @stor = Story.find(params[:id])
-    puts "WE ARE HERE NOW"
-    puts @stor.title
-  end
 end

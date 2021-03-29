@@ -1,9 +1,5 @@
 class MerchantController < ApplicationController
 
-  def index
-    @company = Company.find(session[:merchant_id])
-  end
-
   def stories
     @hide_stories_in_title = true
     @stories = Story.where(company_id: session[:merchant_id]).all

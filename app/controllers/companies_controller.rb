@@ -20,10 +20,10 @@ class CompaniesController < ApplicationController
   def create
     begin
       @company = Company.create!(company_params)
-      flash[:notice] = "#{@company.name} was successfully created."
+      flash[:success] = "#{@company.name} was successfully created."
       redirect_to companies_path
     rescue => err
-      flash[:notice] = "Error creating: #{err}"
+      flash[:warning] = "#{err}"
       redirect_to companies_path
     end
   end

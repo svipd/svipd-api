@@ -15,6 +15,7 @@ class LoginController < ApplicationController
       #redirect_to products_by_company_id_path({:merchant_id => merchants.first.company_id})
     else
       redirect_to merchant_login_path
+      flash[:warning] = "Login failed. Please try again."
     end
 
     #session[:merchant_id] = 1

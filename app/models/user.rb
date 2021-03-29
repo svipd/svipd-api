@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     # Go through comp_to_barcodes and remove companies that do not
     # have all the products needed
     comp_to_barcodes.each do |k,v|
-      v.sort
+      v = v.sort
       if v != barcodes
         comp_to_barcodes.delete(k)
       end

@@ -48,6 +48,9 @@ group :development, :test do
   # or
   gem "factory_bot"
 end
+gem "factory_girl", "~> 4.9"
+
+gem "factory_girl_rails", "~> 4.9"
 
 group :test do
   gem 'cucumber-rails', :require => false

@@ -35,9 +35,9 @@
         text-color: black;
     }
     .gray_col:hover{
-      background-color: black;
-      color: white;
-      transition: all .2s;
+        background-color: black;
+        color: white;
+        transition: all .2s;
     }
     #footr{
         background-color:black;
@@ -57,19 +57,26 @@
 
 <%= render "common/header_login" %>
 <div style="margin:30px">
-<h2>We Are Glad You Are Here!</h2>
-<h3> Be ready to elevate your sells and brand to a whole new level! </h3>
-<%= form_tag users_path, :class => 'form'  do %>
-    <%= label :user, :fname, 'First Name', :class => 'col-form-label'  %>
-    <%= text_field :user, :fname, :class => 'form-control' %>
-    <%= label :user, :lname, 'Last Name', :class => 'col-form-label'  %>
-    <%= text_field :user, :lname, :class => 'form-control' %>
-    <%= label :user, :username, 'Username', :class => 'col-form-label'  %>
-    <%= text_field :user, :username, :class => 'form-control' %>
-    <%= label :user, :password, 'Password', :class => 'col-form-label'  %>
-    <%= password_field  :user, :password, :class => 'form-control' %>
-    <br/>
-    <%= submit_tag 'Create Account', :class => 'btn yellow_col btn-lg ' %>
-    <%= link_to 'Cancel', user_login_path, :class => 'btn gray_col btn-lg ' %>
-<% end %>
+  <% if @account_created %>
+    <center>
+    <%= link_to 'Open Login Page', user_login_path, :class => 'btn grey_col btn-lg ' %>
+    </center>
+  <% end %>
+  <% unless @account_created %>
+    <h2>We Are Glad You Are Here!</h2>
+    <h3> Be ready to elevate your sells and brand to a whole new level! </h3>
+    <%= form_tag users_path, :class => 'form'  do %>
+      <%= label :user, :fname, 'First Name', :class => 'col-form-label'  %>
+      <%= text_field :user, :fname, :class => 'form-control' %>
+      <%= label :user, :lname, 'Last Name', :class => 'col-form-label'  %>
+      <%= text_field :user, :lname, :class => 'form-control' %>
+      <%= label :user, :username, 'Username', :class => 'col-form-label'  %>
+      <%= text_field :user, :username, :class => 'form-control' %>
+      <%= label :user, :password, 'Password', :class => 'col-form-label'  %>
+      <%= password_field  :user, :password, :class => 'form-control' %>
+      <br/>
+      <%= submit_tag 'Create Account', :class => 'btn yellow_col btn-lg ' %>
+      <%= link_to 'Cancel', user_login_path, :class => 'btn gray_col btn-lg ' %>
+    <% end %>
+  <% end %>
 </div>

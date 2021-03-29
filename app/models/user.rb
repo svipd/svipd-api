@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   self.primary_key = "id"
   has_one :cart, foreign_key: 'user_id', dependent: :nullify
+  has_one :like, foreign_key: 'user_id', dependent: :nullify
 
   validates :fname, presence: true
   validates :lname, presence: true

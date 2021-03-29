@@ -5,7 +5,7 @@ class LoginController < ApplicationController
   end
 
   def user_login_post
-    users = User.includes(:cart).where("LOWER (username) = ? and password = ?",
+    users = User.includes(:cart, :like).where("LOWER (username) = ? and password = ?",
                               params[:username].downcase,
                               Digest::MD5.hexdigest(params[:password]))
     count = users.all.count
@@ -14,6 +14,7 @@ class LoginController < ApplicationController
       session[:user] = users.first
       session[:fname] = users.first.fname
       session[:cart] = users.first.cart
+      session[:like] = users.first.like
       redirect_to root_path
     else
       redirect_to user_login_path
@@ -25,6 +26,7 @@ class LoginController < ApplicationController
     session[:user_logged_in] = nil
     session[:user] = nil
     session[:cart] = nil
+    session[:like] = nil
     redirect_to root_path
   end
 

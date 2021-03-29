@@ -197,18 +197,29 @@
 <script>
     $(document).ready(function() {
         $("input").on('click', function (e) {
-            if (e.target.defaultValue !== 'Add to Wishlist')
+            if (e.target.defaultValue !== 'Add to Wishlist' && e.target.defaultValue !== 'Like')
                 return;
             var x = document.getElementById("fader");
             x.style.display = "block";
-            $.ajax({
-                url: "/users/wishlist/add",
-                type: "POST",
-                data: {product: this.id}
-            }).done(function() {
-                console.log("it was here");
-                x.style.display = "none";
-            });
+            if (e.target.defaultValue == 'Add to Wishlist') {
+              $.ajax({
+                  url: "/users/wishlist/add",
+                  type: "POST",
+                  data: {product: this.id}
+              }).done(function() {
+                  console.log("it was here");
+                  x.style.display = "none";
+              });
+            } else {
+              $.ajax({
+                  url: "/users/likedlist/add",
+                  type: "POST",
+                  data: {product: this.id}
+              }).done(function() {
+                  console.log("it was here");
+                  x.style.display = "none";
+              });
+            }
         })
     })
 </script>
@@ -266,6 +277,7 @@
                     <% if session[:user_logged_in] %>
                       <center>
                         <input value = "Add to Wishlist" type = "button" class="btn grey_col btn-sm" id="<%= product.barcode %>">
+                        <input value = "Like" type = "button" class="btn grey_col btn-sm" id="<%= product.barcode %>">
                       </center>
                     <% end %>
                   </div>

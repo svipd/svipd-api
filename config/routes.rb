@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   match '/users/login' => 'login#user_login', :as => "user_login", :via => "get"
   match '/users/login' => 'login#user_login_post', :as => "user_login_post", :via => "post"
   match '/users/logout' => 'login#user_logout', :as => "user_logout", :via => "get"
+  match '/users/likedlist/add' => 'users#add_to_likedlist', :as => "add_to_likedlist", :via => "post"
   match '/users/wishlist/add' => 'users#add_to_wishlist', :as => "add_to_wishlist", :via => "post"
   match '/users/wishlist/delete' => 'users#delete_from_wishlist', :as => "delete_from_wishlist", :via => "post"
   match '/users/wishlist' => 'users#wishlist', :as => "user_wishlist", :via => "get"

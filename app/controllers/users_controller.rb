@@ -20,6 +20,7 @@ class UsersController < ApplicationController
         new_params[:password] = Digest::MD5.hexdigest(new_params[:password])
         @user = User.create!(new_params)
         Cart.create!({:user_id => @user.id})
+        Like.create!({:user_id => @user.id})
         flash[:success] = "#{@user.username} was successfully created. Please login below."
         redirect_to user_login_path
       rescue => err
@@ -42,6 +43,35 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def add_to_likedlist
+    head :no_content
+    if session[:user_logged_in]
+      liked = session[:like]
+      likedlist = nil
+      if liked != nil
+        likedlist = liked["likedlist"]
+      else
+        liked = Like.create!({:user_id => session[:user]["id"]})
+      end
+      if likedlist == nil
+        likedlist = []
+      else
+        likedlist = likedlist.split(',')
+      end
+      product = params[:product]
+      unless likedlist.include?(product)
+        likedlist.push(product)
+      else
+        likedlist.delete(product)
+      end
+      @like = Like.find(liked["id"].to_i)
+      likedlist_str = likedlist.join(",")
+      @like.update({:likedlist => likedlist_str})
+      liked["likedlist"] = likedlist_str
+      session[:like] = liked
+    end
   end
 
   def add_to_wishlist

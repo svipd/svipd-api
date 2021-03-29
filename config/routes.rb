@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   match '/merchant/stories' => 'merchant#stories', :as => "merchant_stories", :via => "get"
   match '/merchant/index' => 'merchant#index', :as => 'merchant_index_path', :via => "get"
   resources :merchant
+  resources :users
 
   
   # Example resource route with options:

@@ -59,23 +59,17 @@
 <div style="margin:30px">
 <h2>We Are Glad You Are Here!</h2>
 <h3> Be ready to elevate your sells and brand to a whole new level! </h3>
-<%= form_tag companies_path, :class => 'form'  do %>
-  <%= label :company, :name, 'Company Name', :class => 'col-form-label' %>
-  <%= text_field :company, :name, :class => 'form-control' %>
-  <%= label :company, :description, 'Description', :class => 'col-form-label'  %>
-  <%= text_field :company, :description, :class => 'form-control' %>
-  <%= label :company, :address, 'Address', :class => 'col-form-label'  %>
-  <%= text_field :company, :address, :class => 'form-control' %>
-  <%= label :company, :email, 'Email', :class => 'col-form-label'  %>
-  <%= text_field :company, :email, :class => 'form-control' %>
-  <%= label :company, :image_url, 'Logo URL', :class => 'col-form-label'  %>
-  <%= text_field :company, :image_url, :class => 'form-control' %>
-  <%= label :company, :username, 'Username', :class => 'col-form-label'  %>
-  <%= text_field :company, :username, :class => 'form-control' %>
-  <%= label :company, :password, 'Password', :class => 'col-form-label'  %>
-  <%= password_field  :company, :password, :class => 'form-control' %>
-  <br/>
-  <%= submit_tag 'Create Merchant Account', :class => 'btn yellow_col btn-lg ' %>
-  <%= link_to 'Cancel', merchant_login_path, :class => 'btn gray_col btn-lg ' %>
+<%= form_tag users_path, :class => 'form'  do %>
+    <%= label :user, :fname, 'First Name', :class => 'col-form-label'  %>
+    <%= text_field :user, :fname, :class => 'form-control' %>
+    <%= label :user, :lname, 'Last Name', :class => 'col-form-label'  %>
+    <%= text_field :user, :lname, :class => 'form-control' %>
+    <%= label :user, :username, 'Username', :class => 'col-form-label'  %>
+    <%= text_field :user, :username, :class => 'form-control' %>
+    <%= label :user, :password, 'Password', :class => 'col-form-label'  %>
+    <%= password_field  :user, :password, :class => 'form-control' %>
+    <br/>
+    <%= submit_tag 'Create Account', :class => 'btn yellow_col btn-lg ' %>
+    <%= link_to 'Cancel', root_path, :class => 'btn gray_col btn-lg ' %>
 <% end %>
 </div>

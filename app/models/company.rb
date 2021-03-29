@@ -16,15 +16,11 @@ class Company < ActiveRecord::Base
     if loc.nil? == false
       user_addr = loc
     end
-    puts "User addr: #{user_addr}"
     user_addr=Geokit::Geocoders::GoogleGeocoder.geocode user_addr
-    puts "User addr: #{user_addr}"
     @distances = Hash.new
     @companies.each do |c|
       if c.address.nil? == false
-        puts "getting dist"
-        dist = user_addr.distance_to(user_addr)
-        puts "getting dist #{dist}"
+        dist = user_addr.distance_to(c.address)
         @distances[c.company_id] = dist
       end
     end
@@ -36,9 +32,7 @@ class Company < ActiveRecord::Base
     if loc.nil? == false
       user_addr = loc
     end
-    puts "User addr: #{user_addr}"
     user_addr=Geokit::Geocoders::GoogleGeocoder.geocode user_addr
-    puts "User addr: #{user_addr}"
     dist = user_addr.distance_to(company_address)
     dist
   end

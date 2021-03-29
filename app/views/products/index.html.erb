@@ -263,10 +263,11 @@
                     <p class="card-text h5" style = "text-align: justify;">$<%= product.price %></p>
                     <p class="card-text h6" style = "text-align: justify;"><%= product.distance == 10000000000 ? "" : "#{product.distance} mi away" %></p>
                     <p class="card-text" style = "text-align: justify;">UPC/SKU: <%= product.barcode %></p>
-                    <center>
-
-                      <input value = "Add to Wishlist" type = "button" class="btn grey_col btn-sm" id="<%= product.barcode %>">
-                    </center>
+                    <% if session[:user_logged_in] %>
+                      <center>
+                        <input value = "Add to Wishlist" type = "button" class="btn grey_col btn-sm" id="<%= product.barcode %>">
+                      </center>
+                    <% end %>
                   </div>
                   <div class = "body" style = "float:right;">
                     <%= link_to product.company.name, products_by_company_id_path({:merchant_id => product.company_id}), class: 'btn', style: 'background-color:black;color:#F2C94C;' %>

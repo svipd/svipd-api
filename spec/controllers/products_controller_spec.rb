@@ -27,6 +27,8 @@ RSpec.describe ProductsController, :type => :controller do
         price 5
         stock_count 50
         company_id 1
+        barcode 1
+        image_url "http://www.x.com"
       end
     end
     let(:product) { FactoryGirl.create(:product) }
@@ -63,7 +65,7 @@ RSpec.describe ProductsController, :type => :controller do
   context "PATCH show/:id" do
     it "renders the product update template with sad path" do
       get :update, id: 1
-      expect(response).to redirect_to("/products/merchant-index")
+      expect(response).to redirect_to("/products/merchant-products")
       expect(flash[:notice]).to be_present
     end
   end
@@ -71,7 +73,7 @@ RSpec.describe ProductsController, :type => :controller do
   context "PATCH show/:id" do
     it "renders the product update template with sad path" do
       get :update, {:id => 1, :product_params => product}
-      expect(response).to redirect_to("/products/merchant-index")
+      expect(response).to redirect_to("/products/merchant-products")
       expect(flash[:notice]).to be_present
     end
   end
@@ -84,16 +86,15 @@ RSpec.describe ProductsController, :type => :controller do
   context "POST create" do
     it "renders the product new template with create (sad path)" do
       post :create
-      expect(response).to redirect_to("/products/merchant-index")
-      expect(flash[:notice]).to be_present
+      expect(response).to redirect_to("/products/new")
+      expect(flash[:warning]).to be_present
     end
   end
   context "POST create" do
     it "renders the product new template with create and with a product" do
       product.id = nil
       post :create, {:product => product}, merchant_id: 1
-      expect(response).to redirect_to("/products/merchant-index")
-      expect(flash[:notice]).to be_present
+      expect(response).to redirect_to("/products/new")
     end
   end
   # TODO: Need to get it to actually delete

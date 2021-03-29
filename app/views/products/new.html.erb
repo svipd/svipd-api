@@ -1,5 +1,6 @@
 <%= render "common/header_merchant" %>
 <div class="container">
+<br />
 <h2>Add a Product!</h2>
 
 <%= form_tag products_path, :class => 'form' do %>
@@ -11,6 +12,10 @@
   <%= text_field :product, :price, :class => 'form-control' %>
   <%= label :product, :stock_count, 'Number of Units in Inventory', :class => 'col-form-label'  %>
   <%= text_field :product, :stock_count, :class => 'form-control' %>
+  <%= label :product, :barcode, 'SKU/EAN ID', :class => 'col-form-label'  %>
+  <%= text_field :product, :barcode, :class => 'form-control' %>
+  <%= label :product, :image_url, 'Image URL', :class => 'col-form-label'  %>
+  <%= text_field :product, :image_url, :class => 'form-control' %>
   <br/>
   <%= submit_tag 'Add Product', :class => 'btn btn-primary' %>
   <%= link_to 'Cancel', products_by_company_id_path, :class => 'btn btn-secondary' %>

@@ -126,6 +126,8 @@ RSpec.describe Product, :type => :model do
         subject.description = "Great music"
         subject.name = "Swifter"
         subject.price = 5
+        subject.image_url = "dfgs"
+        subject.barcode = 55555
         expect(subject).to be_valid
     end    
     it "is not valid without company id" do

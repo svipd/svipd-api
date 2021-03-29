@@ -56,13 +56,15 @@ class ProductsController < ApplicationController
       @product = Product.create!(name: product_json[:name],
                                  description: product_json[:description],
                                  price: product_json[:price].to_f,
+                                 image_url: product_json[:image_url],
+                                 barcode: product_json[:barcode],
                                  stock_count: product_json[:stock_count].to_i,
                                  company_id: product_json[:company_id].to_i)
-      flash[:notice] = "#{@product.name} was successfully created."
+      flash[:success] = "#{@product.name} was successfully created."
       redirect_to products_by_company_id_path
     rescue => err
-      flash[:notice] = "Error creating: #{err}"
-      redirect_to products_by_company_id_path
+      flash[:warning] = "#{err}"
+      redirect_to new_product_path
     end
   end
 

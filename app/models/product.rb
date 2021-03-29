@@ -6,6 +6,8 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :name, presence: true
   validates :price, presence: true
+  validates :barcode, presence: true
+  validates :image_url, presence: true
 
   def self.search_by_companyid(products, cid, search)
     searched_products = products.where("company_id = ?", cid)

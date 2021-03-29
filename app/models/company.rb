@@ -32,6 +32,7 @@ class Company < ActiveRecord::Base
     if loc.nil? == false
       user_addr = loc
     end
+    puts "User addr: #{user_addr}"
     user_addr=Geokit::Geocoders::GoogleGeocoder.geocode user_addr
     dist = user_addr.distance_to(company_address)
     dist

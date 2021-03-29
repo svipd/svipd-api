@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20150809022253) do
   end
   create_table "companies", force: :cascade, :id => false do |t|
     t.integer   "company_id", :primary_key => true
-    t.string    "name"
+    t.text      "name"
     t.text      "description"
-    t.string    "address"
-    t.string    "image_url"
-    t.string    "username"
-    t.string    "password"
+    t.text      "address"
+    t.text      "image_url"
+    t.text      "username"
+    t.text      "password"
   end
   # id is here implicitly
   create_table "stories", force: :cascade do |t|

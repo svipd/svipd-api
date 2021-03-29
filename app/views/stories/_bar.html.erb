@@ -21,7 +21,7 @@
     <div class = "pad-action pad-left-more" style = "margin-left:20px;">
 
       <% @stories.each do |story| %>
-
+        <% if story.company %>
         <div style = "display:inline-block; margin-right: 10px;" id = "myBtn<%= story.id %>" data-bs-toggle="modal" data-bs-target="#Modal<%= story.id %>">
           <div class="justify-center" style = "width:113px;">
 
@@ -72,6 +72,7 @@
           </div>
         </div>
 
+      <% end %>
       <% end %>
     </div>
   </div>

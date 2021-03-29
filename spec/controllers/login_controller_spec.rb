@@ -25,9 +25,13 @@ RSpec.describe LoginController, :type => :controller do
     get :merchant_login
     expect(response).to render_template("login/merchant_login")
   end  
-  it "renders the logged in template" do
-    post :merchant_login_post
+  it "renders the logged in template sad path" do
+    post :merchant_login_post, :username => "Walmart", :password => "xxxxxxx"
     expect(response).to redirect_to("/merchant/login")
+  end 
+  it "renders the logged in template" do
+    post :merchant_login_post, :username => "Walmart", :password => "x"
+    expect(response).to redirect_to("/products/merchant-products")
   end 
   
 end

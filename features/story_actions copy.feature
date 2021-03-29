@@ -7,15 +7,15 @@ Feature: search for movies by director
 Background: On svipd homepage
 
   Given the following companies exist:
-  | name                  | description | address                             | image_url | company_id  | username | password
-  | Columbia University   | test        | 600 w 116th st, new york, ny 10027  |   "x"     | 1           | dssdfsdf | dsdfs
-  | Columbia University2   | test       | 600 w 116th st, new york, ny 10027  |   "x"     | 2           | asda     | dsdfsdf
+  | name                  | description | address                             | image_url | company_id  | username | password |
+  | Columbia University   | test        | 600 w 116th st, new york, ny 10027  |   "x"     | 1           | dssdfsdf | 9dd4e461268c8034f5c8564e155c67a6 |
+  | Columbia University2   | test       | 600 w 116th st, new york, ny 10027  |   "x"     | 2           | asda     | 9dd4e461268c8034f5c8564e155c67a6 |
 
   Given the following products exist:
-  | pid | name        | description | price     | stock_count | company_id  |
-  | 1   | Star Wars   | PG          | 5         |   5         | 1           |
-  | 2   | books       | Intelligent | 25        |   15        | 1           |
-  | 3   | xyz         | xyz         | 25        |   15        | 2           |
+  | pid | name        | description | price     | stock_count | company_id  | barcode | image_url |
+  | 1   | Star Wars   | PG          | 5         |   5         | 1           | 1       | x         |
+  | 2   | books       | Intelligent | 25        |   15        | 1           | 2       | x         |
+  | 3   | xyz         | xyz         | 25        |   15        | 2           | 3       | x         |
 
   Given the following stories exist:
   | id  | company_id  | title                  | image            | description  |
@@ -23,7 +23,8 @@ Background: On svipd homepage
 
  Scenario: Add story as a merchant
   When I go to the merchant_login page
-   And  I fill in "username" with "Columbia University"
+   And  I fill in "username" with "dssdfsdf"
+   And  I fill in "password" with "x"
    And I press "Login"
    And I follow "Stories"
    And I follow "Add new Story"
@@ -38,7 +39,8 @@ Background: On svipd homepage
    
 Scenario: Failing to add story as a merchant
   When I go to the merchant_login page
-   And  I fill in "username" with "Columbia University"
+   And  I fill in "username" with "dssdfsdf"
+   And  I fill in "password" with "x"
    And I press "Login"
    And I follow "Stories"
    And I follow "Add new Story"
@@ -51,10 +53,10 @@ Scenario: Failing to add story as a merchant
 
 Scenario: Viewing my story
   When I go to the merchant_login page
-   And  I fill in "username" with "Columbia University"
+   And  I fill in "username" with "dssdfsdf"
+   And  I fill in "password" with "x"
    And I press "Login"
    And I follow "Stories"
-   And I follow "BROOKS BROTHERS OFFER"
    Then I should see "BROOKS BROTHERS OFFER"
 
    # Deleting story may be difficult with image... Idk how to do it right now

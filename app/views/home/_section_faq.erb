@@ -6,7 +6,9 @@
       <div class = "col-6">
         <h1 class="action-hyper">FAQs</h1>
         <h4>How do I use sVipd?</h4> <h3> Simply search for a product to find the best price near you!</h3>
-        <h4>Why should I sign up?</h4> <h3>Signing up allows you to add items to your personalized wish list that will aid you in finding the best aggregate prices!</h3>
+        <% unless session[:user_logged_in] %>
+          <h4>Why should I sign up?</h4> <h3>Signing up allows you to add items to your personalized wish list that will aid you in finding the best aggregate prices!</h3>
+        <% end %>
         <h4>What is a sVipd Alert?</h4> <h3>sVipd Alerts provide you with key information on timely deals in your locality!</h3>
         <button onclick="document.location='#'" type="button" class="btn yellow_col btn-lg section-download-button col-6"><i class="fas fa-hand-point-up fa-2x"></i><br />
           <strong>Find Products!</strong>

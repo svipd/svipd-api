@@ -2,13 +2,14 @@
 <%= stylesheet_link_tag "application" %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-
-
-
-<%= render "common/header" %>
+<% if session[:user_logged_in] %>
+  <%= render "common/header_user_logged_in" %>
+<% else %>
+  <%= render "common/header" %>
+<% end %>
 <%= render "stories/bar" %>
 <%= form_tag products_path, method: :get, id: 'search', :class => 'form' do %>
-<%= render "products/search" %>
+  <%= render "products/search" %>
 <% end %>
 
 <%= render "home/features" %>
@@ -17,9 +18,11 @@
 <br />
 <br />
 <br />
-<%= render "home/section_search" %>
-<%= render "home/section_social" %>
-<%= render "home/section_join" %>
+<% unless session[:user_logged_in] %>
+  <%= render "home/section_search" %>
+  <%= render "home/section_social" %>
+  <%= render "home/section_join" %>
+<% end %>
 <%= render "home/section_faq" %>
 <br />
 <br />

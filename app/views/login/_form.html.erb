@@ -1,0 +1,253 @@
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
+
+<style>
+    .pad-left{
+        padding: 1% 5%;
+    }
+    .navbar-brand{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+    }
+    .nav-link{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size:18px;
+    }
+    .navbar-brand{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+    }
+    .nav-item {
+        padding: 0 18px;
+    }
+
+    #slide-container {
+        position: relative;
+        max-width: 100%;
+    }
+
+    #slide-first-element {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    #slide-element-2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .slide-image {
+        width: 40%;
+        display: inline-block;
+    }
+
+    #slide-first-element {
+        animation: fade-1 10s infinite;
+        -webkit-animation: fade-1 10s infinite;
+    }
+    #slide-element-2 {
+        animation: fade-2 10s infinite;
+        -webkit-animation: fade-2 10s infinite;
+    }
+
+    @keyframes fade-1 {
+        0% { opacity: 1; }
+        33% { opacity: 0; }
+        66% { opacity: 0; }
+        75% {opacity: 1;}
+        95% {opacity: 1;}
+        100% { opacity: 1; }
+    }
+    @keyframes fade-2 {
+        0% { opacity: 0; }
+        33% { opacity: 1; }
+        66% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    .pad-left-more{
+        padding: 2% 6%;
+    }
+    .pad-action {
+        padding-top: 50px;
+    }
+    .pad-left{
+        padding: 1% 6%;
+    }
+
+    .action-hyper{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 57px;
+        font-weight: bold;
+        line-height: 1.5;
+    }
+    .login-div {
+        padding: 6px;
+        background-color: #E5E5E5;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        line-height: 1.5;
+
+    }
+
+    .content-login-div {
+        padding: 5px;
+        background-color: #F5F2F2;
+        border-radius: 10px;
+    }
+    .form-control {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .password-reset {
+        color: #409CD0;
+        text-decoration: none;
+    }
+
+    .password-reset:hover {
+
+        color: #409CD0;
+        text-decoration: none;
+        border: none;
+
+    }
+
+    .col-7{
+        display: block;
+        padding-bottom: 10px;
+    }
+    .white-lm {
+        font-family: 'Montserrat', sans-serif;font-weight: lighter;
+    }
+
+    .merchant-label-card {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .merchant-label {
+        padding-bottom: 5px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        padding-right: 20px;
+        text-decoration: none;
+
+    }
+
+    .form-control:focus {
+        border-color: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .pad-top-login-box{
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+    }
+
+    .yellow_col{
+        background-color: #F2C94C;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .yellow_col:hover {
+        background-color: black;
+        color: white;
+        transition: all .2s;
+    }
+
+    .button-spacer {
+        margin: 20px 0 20px 0;
+    }
+
+    .centered{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .splitter {
+        width: 60%;
+        border-top: 1px solid #c1c1c1;
+    }
+
+
+    h5{ color:white; }
+</style>
+
+<section id = "Login" style = "margin-bottom: 50px;">
+  <div class = "container-fluid">
+    <div class = "row pad-action pad-left-more">
+      <div class = "col-6">
+        <h1 class="action-hyper">Login</h1>
+        <br/>
+        <div id="slide-container">
+          <div id="slide-first-element">
+            <%= image_tag "app_search.png", class: "slide-image" %>
+          </div>
+          <div id="slide-element-2">
+            <%= image_tag "search_res.png", class: "slide-image" %>
+          </div>
+          <br />
+        </div >
+      </div>
+
+      <div class = "col-6 center-justify">
+        <div class = "pad-top-login-box">
+          <div class = "login-div" >
+            <div class = "content-login-div">
+              <center>
+                <h1 class = "action-hyper">sVipd</h1>
+
+                <div class = "col-7">
+                  <input class="form-control me-2" type="text" placeholder="Username" name = "username" id = "username" aria-label="Search">
+                </div>
+                <div class = "col-7">
+                  <input class="form-control me-2" type="password" placeholder="Password" name = "password" id = "password" aria-label="Search">
+                  <a href = "#" name = "login" id = "login" class ="password-reset white-lm" style = "background-color:#F5F2F2;">Forgot your password?</a>
+                </div>
+
+                <div>
+                  <button class="btn yellow_col btn-lg button-spacer col-3" type="submit"> Login </button>
+                </div>
+                <div class="centered">
+                  <div class = "splitter"></div>
+                </div>
+                <% if @type == "merchant" %>
+                  <div>
+                    <%= link_to "Create Account", new_company_path, :class => 'btn grey_col btn-lg button-spacer col-3' %>
+                  </div>
+                <% end %>
+                <% if @type == "user" %>
+                  <div>
+                    <%= link_to "Create Account", new_user_path, :class => 'btn grey_col btn-lg button-spacer col-3' %>
+                  </div>
+                <% end %>
+              </center>
+            </div>
+          </div>
+          <% if @type == "user" %>
+            <div class="merchant-label-card">
+              <%= link_to "Are you a merchant?", merchant_login_path, :class => 'merchant-label' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

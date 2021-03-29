@@ -5,23 +5,23 @@ class UsersController < ApplicationController
 
   def index
   end
- # def initialize
-    
- # end
+  # def initialize
+
+  # end
 
   def new
     # default: render 'new' template
   end
 
   def create
-    puts "#{user_params.inspect}"
     if user_params[:password].length > 7
       begin
         new_params = user_params
         new_params[:password] = Digest::MD5.hexdigest(new_params[:password])
         @user = User.create!(new_params)
+        Cart.create!({:user_id => @user.id})
         flash[:success] = "#{@user.username} was successfully created. Please login below."
-        redirect_to new_user_path
+        redirect_to user_login_path
       rescue => err
         flash[:warning] = "#{err}"
         if flash[:warning].include? "username"
@@ -42,6 +42,69 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def add_to_wishlist
+    head :no_content
+    if session[:user_logged_in]
+      cart = session[:cart]
+      wishlist = cart["wishlist"]
+      if wishlist == nil
+        wishlist = []
+      else
+        wishlist = wishlist.split(',')
+      end
+      product = params[:product]
+      unless wishlist.include?(product)
+        wishlist.push(product)
+      end
+      @cart = Cart.find(cart["id"].to_i)
+      wishlist_str = wishlist.join(",")
+      @cart.update({:wishlist => wishlist_str})
+      cart["wishlist"] = wishlist_str
+      session[:cart] = cart
+    end
+  end
+
+  def wishlist
+    if session[:user_logged_in]
+      cart = session[:cart]
+      wishlist = cart["wishlist"]
+      if wishlist == nil
+        wishlist = []
+      else
+        wishlist = wishlist.split(',')
+      end
+      @products = []
+      wishlist.each do |product|
+        product = Product.find_by("barcode": product)
+        @products.push(product)
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+  def delete_from_wishlist
+    barcode = params[:barcode]
+    cart = session[:cart]
+    wishlist = cart["wishlist"]
+    wishlist = wishlist.split(',')
+    wishlist.delete(barcode)
+    wishlist_str = wishlist.join(",")
+    @cart = Cart.find(cart["id"].to_i)
+    @cart.update({:wishlist => wishlist_str})
+    cart["wishlist"] = wishlist_str
+    session[:cart] = cart
+    redirect_to user_wishlist_path
+  end
+
+  def applicable_stores
+    cart = session[:cart]
+    wishlist = cart["wishlist"]
+    wishlist = wishlist.split(',')
+    distance = params[:distance][:distance].to_f
+    @companies = User.get_applicable_stores(wishlist, distance, session[:location])
   end
 
   private

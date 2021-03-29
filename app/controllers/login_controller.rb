@@ -4,6 +4,29 @@ class LoginController < ApplicationController
     @type = "user"
   end
 
+  def user_login_post
+    users = User.includes(:cart).where("LOWER (username) = ? and password = ?",
+                              params[:username].downcase,
+                              Digest::MD5.hexdigest(params[:password]))
+    count = users.all.count
+    if count > 0
+      session[:user_logged_in] = true
+      session[:user] = users.first
+      session[:cart] = users.first.cart
+      redirect_to root_path
+    else
+      redirect_to user_login_path
+      flash[:warning] = "Login failed. Please try again. #{Digest::MD5.hexdigest(params[:password])} and #{User.all.inspect}"
+    end
+  end
+
+  def user_logout
+    session[:user_logged_in] = nil
+    session[:user] = nil
+    session[:cart] = nil
+    redirect_to root_path
+  end
+
   def merchant_login
     @type = "merchant"
     if session[:merchant_id] != nil

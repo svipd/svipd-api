@@ -1,0 +1,104 @@
+<style>
+
+    .product_image {
+        height: 120px;
+        border-radius: 100px;
+        width: 120px;
+        object-fit: cover;
+        border: 2px solid black;
+
+    }
+
+    .btn-toggle-colors {
+        background-color: #797979;
+        color: #fff;
+        width: 100px;
+        font-weight: bold;
+    }
+
+
+    .table-striped > tbody > tr:nth-child(2n+1) > td {
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(240,183,160,1) 0%, rgba(76,225,242,1) 0%, rgba(76,225,242,0.33967090254070376) 100%);
+        font-weight: normal;
+
+    }
+
+    .table-striped > tbody > tr:nth-child(2n) > td {
+        background-color: #333333;
+        font-weight: normal;
+        color: white;
+
+    }
+
+    .table-striped > tbody > tr:nth-child(2n) > td .product_image {
+        border: 2px solid #F2C94C;
+
+    }
+
+    .table-striped > tbody > tr:nth-child(2n) > td .btn-toggle-colors {
+        border: 2px solid #F2C94C;
+        background-color: #F2C94C;
+        color: #fff;
+        font-color: #fff;
+    }
+
+    .sort_optn {
+        color: black;
+        text-decoration: none;
+    }
+
+    .outliner {
+        border-top: 1px solid #c1c1c1;
+        padding-top: 10px;
+        width: 95%;
+        margin: auto;
+    }
+
+</style>
+
+<%= render "common/header_user_logged_in" %>
+<div class="container-fluid">
+  <div class = "pad-action pad-left">
+    <h2>Available at </h2>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <% @companies.each do |company| %>
+
+      <div class = "row" style = "padding-bottom:10px;">
+
+        <div class = "row">
+          <div class = "col-12 outliner"></div>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <img src = "<%= company["image_url"] %>" class = "product_image"/>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <span><%=company["name"]%></span><br />
+        </div>
+
+        <div class = "col-4 my-auto"  style = "text-align: center;align-items: center;">
+          <span><%=company["address"]%></span><br />
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <span><%=company["distance"]%> mi</span><br />
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <span>$ <%=company["total"]%></span><br />
+        </div>
+      </div>
+    <% end %>
+    <br />
+    <br />
+    <br />
+
+
+  </div>
+</div>

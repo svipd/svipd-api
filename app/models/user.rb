@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  self.primary_key = "id"
+  has_one :cart, foreign_key: 'user_id', dependent: :nullify
+
   validates :fname, presence: true
   validates :lname, presence: true
   validates :username, presence: true
@@ -37,6 +40,7 @@ class User < ActiveRecord::Base
           new_hash = Hash.new
           new_hash["name"] = p.company.name
           new_hash["address"] = p.company.address
+          new_hash["image_url"] = p.company.image_url
           new_hash["distance"] = p.distance
           new_hash["total"] = p.price
           comp_info[p.company_id] = new_hash
@@ -70,7 +74,7 @@ class User < ActiveRecord::Base
       companies.append(v)
     end
 
-    companies = companies.sort_by { |h| h[:price] }
+    companies = companies.sort_by { |h| h["total"] }
     return companies
   end
 end

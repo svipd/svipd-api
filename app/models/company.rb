@@ -4,6 +4,7 @@ class Company < ActiveRecord::Base
   has_many :stories, dependent: :nullify
   validates :name, presence: true
   validates :description, presence: true
+  validates :username, presence: true
   
   def self.company_to_current_user_by_distance(loc)
     # Add the following to the user load:

@@ -184,7 +184,8 @@
           <div id="slide-element-2">
             <%= image_tag "search_res.png", class: "slide-image" %>
           </div>
-        </div>
+          <br />
+        </div >
       </div>
 
       <div class = "col-6 center-justify pad-top-login-box">
@@ -203,7 +204,9 @@
 
                 <div class = "login-btn-pad" style = "margin-bottom:10px;">
                   <button class="btn yellow_col btn-lg section-download-button col-3" type="submit"> Login </button>
+                  <%= link_to "New?", new_company_path, :class => 'btn yellow_col btn-lg section-download-button col-3' %>
                 </div>
+                
               <% end %>
             </center>
           </div>

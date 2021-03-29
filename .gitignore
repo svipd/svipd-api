@@ -22,3 +22,5 @@ Gemfile
 .idea
 
 coverage/*
+
+.rake_tasks~

@@ -15,9 +15,8 @@ class ProductsController < ApplicationController
     end
 
     # Generate distances into @products and order
-    if session[:location].nil?
-      session[:location] = request.location.address
-    end
+    session[:location] = request.location.address
+    puts "Address: #{session[:location]}"
     @products = Product.gen_dist_and_order(@products, session[:location], "dist-price", true) # sort by distance and price in ASC
 
     @product_list = []

@@ -11,10 +11,6 @@ class UsersController < ApplicationController
 
   def new
     # default: render 'new' template
-    @account_created = false
-    if params[:account_created] == "true"
-      @account_created = true
-    end
   end
 
   def create
@@ -24,7 +20,7 @@ class UsersController < ApplicationController
         new_params[:password] = Digest::MD5.hexdigest(new_params[:password])
         @user = User.create!(new_params)
         flash[:success] = "#{@user.username} was successfully created. Please login below."
-        redirect_to new_user_path({:account_created => true})
+        redirect_to user_login_path
       rescue => err
         flash[:warning] = "#{err}"
         if flash[:warning].include? "username"

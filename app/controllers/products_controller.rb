@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
     # Generate distances into @products and order
     session[:location] = request.location.address
     puts "Address: #{session[:location]}"
+    puts "Test: #{request.remote_ip}"
+    puts "Test: #{Geocoder.search(request.remote_ip)}"
     @products = Product.gen_dist_and_order(@products, session[:location], "dist-price", true) # sort by distance and price in ASC
 
     @product_list = []

@@ -16,7 +16,7 @@ class LoginController < ApplicationController
       redirect_to root_path
     else
       redirect_to user_login_path
-      flash[:warning] = "Login failed. Please try again. #{Digest::MD5.hexdigest(params[:password])} and #{User.all.inspect}"
+      flash[:warning] = "Login failed. Please try again."
     end
   end
 

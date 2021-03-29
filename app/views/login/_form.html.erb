@@ -194,7 +194,11 @@
   <div class = "container-fluid">
     <div class = "row pad-action pad-left-more">
       <div class = "col-6">
-        <h1 class="action-hyper">Login</h1>
+        <% if @type == "merchant" %>
+          <h1 class="action-hyper">Merchant Login</h1>
+        <% else %>
+          <h1 class="action-hyper">Login</h1>
+        <% end %>
         <br/>
         <div id="slide-container">
           <div id="slide-first-element">
@@ -245,6 +249,10 @@
             <div class="merchant-label-card">
               <%= link_to "Are you a merchant?", merchant_login_path, :class => 'merchant-label' %>
             </div>
+          <% else %>
+          <div class="merchant-label-card">
+            <%= link_to "Are you a consumer?", user_login_path, :class => 'merchant-label' %>
+          </div>
           <% end %>
         </div>
       </div>

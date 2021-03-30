@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       else
         likedlist.delete(product)
       end
-      @like = Like.find(liked["id"].to_i)
+      @like = Like.find(liked["id"].nil? ? liked[:id].to_i : liked["id"].to_i)
       likedlist_str = likedlist.join(",")
       @like.update({:likedlist => likedlist_str})
       liked["likedlist"] = likedlist_str
@@ -77,15 +77,11 @@ class UsersController < ApplicationController
   def delete_from_likedlist
     barcode = params[:barcode]
     like = session[:like]
-    puts like.inspect
-    likedlist = like["likedlist"]
-    puts likedlist.inspect
+    likedlist = like["likedlist"].nil? ? like[:likedlist] : like["likedlist"]
     likedlist = likedlist.split(',')
     likedlist.delete(barcode)
-    puts barcode.inspect
-    puts likedlist.inspect
     likedlist = likedlist.join(",")
-    @likes = Like.find(like["id"].to_i)
+    @likes = Like.find(like["id"].nil? ? like[:id].to_i : like["id"].to_i)
     @likes.update({:likedlist => likedlist})
     like["likedlist"] = likedlist
     session[:like] = like
@@ -97,7 +93,7 @@ class UsersController < ApplicationController
       liked = session[:like]
       likedlist = nil
       if liked != nil
-        likedlist = liked["likedlist"]
+        likedlist = liked["likedlist"].nil? ? liked[:likedlist] : liked["likedlist"]
       end
       if likedlist == nil
         likedlist = []
@@ -113,7 +109,7 @@ class UsersController < ApplicationController
 
       
       cart = session[:cart]
-      wishlist = cart["wishlist"]
+      wishlist = cart["wishlist"].nil? ? cart[:wishlist] : cart["wishlist"]
       if wishlist == nil
         wishlist = []
       else
@@ -143,7 +139,7 @@ class UsersController < ApplicationController
       unless wishlist.include?(product)
         wishlist.push(product)
       end
-      @cart = Cart.find(cart["id"].to_i)
+      @cart = Cart.find(cart["id"].nil? ? cart[:id].to_i : cart["id"].to_i)
       wishlist_str = wishlist.join(",")
       @cart.update({:wishlist => wishlist_str})
       cart["wishlist"] = wishlist_str
@@ -154,7 +150,7 @@ class UsersController < ApplicationController
   def wishlist
     if session[:user_logged_in]
       cart = session[:cart]
-      wishlist = cart["wishlist"]
+      wishlist = cart["wishlist"].nil? ? cart[:wishlist] : cart["wishlist"]
       if wishlist == nil
         wishlist = []
       else
@@ -173,11 +169,11 @@ class UsersController < ApplicationController
   def delete_from_wishlist
     barcode = params[:barcode]
     cart = session[:cart]
-    wishlist = cart["wishlist"]
+    wishlist = cart["wishlist"].nil? ? cart[:wishlist] : cart["wishlist"]
     wishlist = wishlist.split(',')
     wishlist.delete(barcode)
     wishlist_str = wishlist.join(",")
-    @cart = Cart.find(cart["id"].to_i)
+    @cart = Cart.find(cart["id"].nil? ? cart[:id].to_i : cart["id"].to_i)
     @cart.update({:wishlist => wishlist_str})
     cart["wishlist"] = wishlist_str
     session[:cart] = cart

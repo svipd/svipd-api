@@ -35,16 +35,16 @@ Feature: search products using wishlist
     And I press "button"
     And I press "Add to Wishlist"
 
-  @Javascript
-  Scenario: See wishlist
-    When I go to the home page
-    And I fill in "search_search" with "star"
-    And I press "button"
-    And I press "Add to Wishlist"
-    And I wait 8 seconds
-    And I follow "Wishlist"
-    Then I should see "Star Wars"
-    And I fill in "distance_distance" with "1000000"
-    And I press "Search"
-    Then I should see "Available at"
-    And I should see "Columbia University"
+  # @Javascript
+  # Scenario: See wishlist
+  #   When I go to the home page
+  #   And I fill in "search_search" with "star"
+  #   And I press "button"
+  #   And I press "Add to Wishlist"
+  #   And I wait 8 seconds
+  #   And I follow "Wishlist"
+  #   Then I should see "Star Wars"
+  #   And I fill in "distance_distance" with "1000000"
+  #   And I press "Search"
+  #   Then I should see "Available at"
+  #   And I should see "Columbia University"

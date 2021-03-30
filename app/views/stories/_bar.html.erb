@@ -63,7 +63,7 @@
                     <%= story.description %>
                   </p>
 
-                  <%= link_to "See more", company_path(story.company), :class => "btn gold_col btn-lg", :style => "background-color: #F2C94C;"%>
+                  <%= link_to "See more", products_by_company_id_path({:merchant_id => story.company.company_id}), :class => "btn gold_col btn-lg", :style => "background-color: #F2C94C;"%>
                 </div>
 
               </div>

@@ -55,10 +55,9 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
   context "PATCH show/:id" do
-    it "renders the update template with sad path" do
-      get :update, id: 1
-      expect(response).to redirect_to("/companies")
-      expect(flash[:notice]).to be_present
+    it "renders the update template with happy path" do
+      get :update, :company => {:name => "Walmart"}, :id => 1
+      expect(response).to redirect_to("/companies/1")
     end
   end
   context "GET new" do

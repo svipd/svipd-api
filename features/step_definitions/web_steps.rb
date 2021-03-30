@@ -107,7 +107,6 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
-  puts page
   if page.respond_to? :should
     page.should have_content(text)
   else

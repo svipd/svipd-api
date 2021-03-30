@@ -71,6 +71,7 @@ III.	Key Features
 
   12. Added flash header warnings/notices/successes for various failures or other urgent messages to give the user feedback.
   
+  13. Adding stories/products: once logged in as a merchant, you can add stories or add products as necessary.
 
 IV.	Testing information
 

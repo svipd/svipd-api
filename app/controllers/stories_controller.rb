@@ -19,6 +19,13 @@ class StoriesController < ApplicationController
                                  description: story_json[:description],
                                  image: story_json[:image],
                                  company_id: session[:merchant_id])
+      client = Aws::SNS::Client.new(region: 'us-east-1',
+                                      access_key_id: 'AKIAQ2KQVMG47K7DN476',
+                                      secret_access_key: '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')
+      sns = Aws::SNS::Resource.new(client: client)
+      topic = sns.topic('arn:aws:sns:us-east-1:056540619193:svipd-stories')
+      topic.publish({message: story_json[:description],
+                     subject: story_json[:title]})
       flash[:notice] = "#{@story.title} was successfully created."
       redirect_to merchant_stories_path
     rescue => err

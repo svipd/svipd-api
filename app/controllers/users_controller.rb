@@ -16,6 +16,16 @@ class UsersController < ApplicationController
   def create
     if user_params[:password].length > 7
       begin
+        client = Aws::SNS::Client.new(region: 'us-east-1',
+                                      access_key_id: 'AKIAQ2KQVMG47K7DN476',
+                                      secret_access_key: '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')
+        sns = Aws::SNS::Resource.new(client: client)
+        topic = sns.topic('arn:aws:sns:us-east-1:056540619193:svipd-stories')
+        # Currently email id is hardcoded.
+        sub = topic.subscribe({
+                protocol: 'email',
+                endpoint: 'azhaan.leo@gmail.com'
+              })
         new_params = user_params
         new_params[:password] = Digest::MD5.hexdigest(new_params[:password])
         @user = User.create!(new_params)

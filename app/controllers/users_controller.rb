@@ -38,9 +38,29 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if session[:user_logged_in]
+      @user = User.find session[:user]["id"]
+    else
+      flash[:warning] = "Page not available. Please login."
+      redirect_to user_login_path
+    end
   end
 
   def update
+    if session[:user_logged_in]
+      begin
+        @user = User.find session[:user]["id"]
+        @user.update(user_params)
+        flash[:notice] = "Your profile was successfully updated."
+        redirect_to user_profile_path
+      rescue => err
+        flash[:notice] = "Error updating: #{err}"
+        redirect_to user_profile_path
+      end
+    else
+      flash[:warning] = "Page not available. Please login."
+      redirect_to user_login_path
+    end
   end
 
   def destroy

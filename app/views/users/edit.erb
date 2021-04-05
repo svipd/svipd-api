@@ -1,0 +1,76 @@
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
+
+<style>
+    @keyframes fade-1 {
+        0% { opacity: 1; }
+        33% { opacity: 0; }
+        66% { opacity: 0; }
+        75% {opacity: 1;}
+        95% {opacity: 1;}
+        100% { opacity: 1; }
+    }
+    @keyframes fade-2 {
+        0% { opacity: 0; }
+        33% { opacity: 1; }
+        66% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    .yellow_col{
+        background-color: #F2C94C;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .yellow_col:hover {
+        background-color: black;
+        color: white;
+        transition: all .2s;
+    }
+    .gray_col{
+        background-color: #90989C;
+        border-radius: 10px;
+        padding: 15px;
+        text-color: black;
+    }
+    .gray_col:hover{
+        background-color: black;
+        color: white;
+        transition: all .2s;
+    }
+    #footr{
+        background-color:black;
+    }
+
+    .link-secondary, li{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+        color: white;
+        text-decoration: none;
+    }
+
+    h5{ color:white; }
+</style>
+
+
+<%= render "common/header_user_logged_in" %>
+<div style="margin:30px">
+<h2>Edit Your Profile</h2>
+<%= form_tag user_path(@user), :method => :put do %>
+    <%= label :user, :fname, 'First Name', :class => 'col-form-label'  %>
+    <%= text_field :user, :fname, :class => 'form-control' %>
+    <%= label :user, :lname, 'Last Name', :class => 'col-form-label'  %>
+    <%= text_field :user, :lname, :class => 'form-control' %>
+    <%= label :user, :username, 'Username', :class => 'col-form-label'  %>
+    <%= text_field :user, :username, :class => 'form-control' %>
+    <%= label :user, :email, 'Email Address', :class => 'col-form-label'  %>
+    <%= text_field :user, :email, :class => 'form-control' %>
+  <br/>
+  <%= submit_tag 'Update Profile', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', user_profile_path, :class => 'btn btn-secondary' %>
+<% end %>
+</div>
+
+</div>

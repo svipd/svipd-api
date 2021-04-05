@@ -63,13 +63,13 @@
   <div class = "pad-action" style = "padding-bottom: 50px; margin-top:10px;margin-left:5.1%;">
     <h1><b>User Testimonials</b></h1>
     </div>
-    <div class = "row" style = "margin-left:6%; ">
+    <div class = "row" style = "">
     <% @posts.each do |p| %>
-      <div class = "col-3" style="padding:20px">
+      <div class = "col-4" style="padding:20px">
       <div class = "my-auto"  style = "text-align: center;align-items: center;">
       <img src = "<%= p.image %>" class = "product_image"/>
     </div>
-    <div class = "my-auto"  style = "padding-top:14%; text-align: center;align-items: center;">
+    <div class = "my-auto"  style = "padding-top:20px; text-align: center;align-items: center;">
       <span><b>"<%=p.title%></span></b><br />
     </div>
     <div class = "my-auto"  style = "text-align: center;align-items: center;">

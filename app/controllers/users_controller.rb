@@ -1,6 +1,29 @@
 class UsersController < ApplicationController
 
   def show
+    id = params[:id]
+    @user = User.find(id)
+    likes = Like.all.where("user_id": id)
+    likedlist = ""
+    likes.each do |v|
+      likedlist += v.likedlist
+    end
+    if likedlist == nil
+      likedlist = []
+    else
+      likedlist = likedlist.split(',')
+    end
+    puts likedlist
+    puts likedlist
+    puts likedlist
+    @likes = []
+    likedlist.each do |product|
+      product = Product.find_by("barcode": product)
+      @likes.push(product)
+    end
+
+
+    @posts = Post.all.where("user_id": id)
   end
 
   def index

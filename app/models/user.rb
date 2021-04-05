@@ -8,6 +8,32 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :password, presence: true
 
+  def self.register_email(email)
+    client = Aws::SNS::Client.new(region: 'us-east-1',
+      access_key_id: 'AKIAQ2KQVMG47K7DN476',
+      secret_access_key: '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')
+    sns = Aws::SNS::Resource.new(client: client)
+    topic = sns.topic('arn:aws:sns:us-east-1:056540619193:svipd-stories')
+
+    # Currently email id is hardcoded.
+    sub = topic.subscribe({
+      protocol: 'email',
+      endpoint: email
+    })
+  end
+
+  def self.send_email_to_users_new_story(desc, title)
+    client = Aws::SNS::Client.new(region: 'us-east-1',
+      access_key_id: 'AKIAQ2KQVMG47K7DN476',
+      secret_access_key: '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')
+    sns = Aws::SNS::Resource.new(client: client)
+    topic = sns.topic('arn:aws:sns:us-east-1:056540619193:svipd-stories')
+    topic.publish(  { message: desc,
+                      subject: title
+                    } )
+
+  end
+
   def self.get_applicable_stores(barcodes, radius, loc)
     # barcodes is an array of strings
     # radius is a float

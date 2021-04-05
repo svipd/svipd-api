@@ -16,21 +16,12 @@ class UsersController < ApplicationController
   def create
     if user_params[:password].length > 7
       begin
-        client = Aws::SNS::Client.new(region: 'us-east-1',
-                                      access_key_id: 'AKIAQ2KQVMG47K7DN476',
-                                      secret_access_key: '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')
-        sns = Aws::SNS::Resource.new(client: client)
-        topic = sns.topic('arn:aws:sns:us-east-1:056540619193:svipd-stories')
-        # Currently email id is hardcoded.
-        sub = topic.subscribe({
-                protocol: 'email',
-                endpoint: 'azhaan.leo@gmail.com'
-              })
         new_params = user_params
         new_params[:password] = Digest::MD5.hexdigest(new_params[:password])
         @user = User.create!(new_params)
         Cart.create!({:user_id => @user.id})
         Like.create!({:user_id => @user.id})
+        User.register_email(new_params[:email])
         flash[:success] = "#{@user.username} was successfully created. Please login below."
         redirect_to user_login_path
       rescue => err
@@ -202,6 +193,6 @@ class UsersController < ApplicationController
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.
   def user_params
-    params.require(:user).permit(:username, :fname, :lname, :password)
+    params.require(:user).permit(:username, :fname, :lname, :password, :email)
   end
 end

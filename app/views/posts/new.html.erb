@@ -1,0 +1,25 @@
+<%= render "common/header_user_logged_in" %>
+
+  <div class = "container-fluid">
+    <div class = "row pad-action pad-left-more">
+      <h1>Create a New Post</h1>
+    </div>
+  </div>
+  </div>
+</section>
+  <section style = "padding:120px; width: 990px;margin-left: 250px;">
+    <div class = "login-div" >
+      <div class = "content-login-div">
+        <center>
+          <h1 class = "action-hyper">Create a New Post About a Product</h1>
+          <%= form_tag posts_path, :class => 'form' do %>
+              <%= text_field :new_post, :title, :class => 'form-control', :placeholder => 'Please provide title for the post' %>
+              <%= text_field :new_post, :message, :class => 'form-control', :placeholder => 'Please provide description for the post' %>
+              <%= text_field :new_post, :image, :class => 'form-control', :placeholder => 'Please provide image url of the product' %>
+
+            <%= submit_tag 'Post!', :class => 'btn yellow_col btn-lg section-download-button col-3' %>
+          <% end %>
+        </center>
+      </div>
+    </div>
+

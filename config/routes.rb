@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   match '/users/wishlist' => 'users#wishlist', :as => "user_wishlist", :via => "get"
   match '/users/wishlist/applicable-stores' => 'users#applicable_stores', :as => "applicable_stores", :via => "get"
   resources :users
+  resources :posts
 
 
   

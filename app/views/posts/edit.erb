@@ -1,0 +1,75 @@
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
+
+<style>
+    @keyframes fade-1 {
+        0% { opacity: 1; }
+        33% { opacity: 0; }
+        66% { opacity: 0; }
+        75% {opacity: 1;}
+        95% {opacity: 1;}
+        100% { opacity: 1; }
+    }
+    @keyframes fade-2 {
+        0% { opacity: 0; }
+        33% { opacity: 1; }
+        66% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    .yellow_col{
+        background-color: #F2C94C;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .yellow_col:hover {
+        background-color: black;
+        color: white;
+        transition: all .2s;
+    }
+    .gray_col{
+        background-color: #90989C;
+        border-radius: 10px;
+        padding: 15px;
+        text-color: black;
+    }
+    .gray_col:hover{
+        background-color: black;
+        color: white;
+        transition: all .2s;
+    }
+    #footr{
+        background-color:black;
+    }
+
+    .link-secondary, li{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+        color: white;
+        text-decoration: none;
+    }
+
+    h5{ color:white; }
+</style>
+
+
+<%= render "common/header_user_logged_in" %>
+<div style="margin:30px">
+<h2>Edit Post</h2>
+<%= form_tag post_path(@post), :method => :put do %>
+    <%= label :post, :title, 'Title', :class => 'col-form-label'  %>
+    <%= text_field :post, :title, :class => 'form-control' %>
+    <%= label :post, :message, 'Message', :class => 'col-form-label'  %>
+    <%= text_field :post, :message, :class => 'form-control' %>
+    <%= label :post, :image, 'Image URL', :class => 'col-form-label'  %>
+    <%= text_field :post, :image, :class => 'form-control' %>
+  <br/>
+  <%= submit_tag 'Update Post', :class => 'btn btn-primary' %>
+  <%= link_to 'Destroy',  post_path(@post), data: { confirm: 'Are you sure?' }, method: :delete, :class => 'btn btn-danger' %>
+  <%= link_to 'Cancel', user_profile_path, :class => 'btn btn-secondary' %>
+<% end %>
+</div>
+
+</div>

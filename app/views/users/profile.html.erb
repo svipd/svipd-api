@@ -112,8 +112,34 @@
     <a href="/users/wishlist" style="color: inherit; ">Go to wishlist</a>
     <br />
     <br />
-    <br />
 
+    <h2><% if session[:fname] %> <%= session[:fname] %>'s <% end %> Posts</h2>
+    <% @posts.each do |post| %>
+
+      <div class = "row" style = "padding-bottom:10px;">
+
+        <div class = "row">
+          <div class = "col-12 outliner"></div>
+        </div>
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <img src = "<%= post.image %>" class = "product_image"/>
+        </div>
+
+        <div class = "col-8 my-auto"  style = "text-align: center;align-items: center;">
+          <span><b><%=post.title%></b> <%=post.message%></span><br />
+        </div>
+
+
+        <div class = "col-2 my-auto"  style = "text-align: center;align-items: center;">
+          <%= button_to 'Edit',  edit_post_path(post), :method => "get", :class => "btn btn-toggle-colors", :style => "font-weight: lighter;" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class = "col-2 my-auto btn-lg"  style = "">
+      <%= button_to 'Add Post',  {:controller => "posts", :action => "new"} , {:method=>:get, :class => "btn btn-toggle-colors"} %>
+    </div>
     <div class = "col-2 my-auto btn-lg"  style = "">
       <%= button_to 'Edit Profile',  {:controller => "users", :action => "edit", :id => -1} , {:method=>:get, :class => "btn btn-toggle-colors"} %>
     </div>

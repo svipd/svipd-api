@@ -141,6 +141,8 @@ class UsersController < ApplicationController
         product = Product.find_by("barcode": product)
         @products.push(product)
       end
+
+      @posts = Post.all.where("user_id": session[:user]["id"])
     else
       redirect_to user_profile_path
     end

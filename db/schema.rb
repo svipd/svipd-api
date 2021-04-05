@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150809022253) do
     t.string    "fname"
     t.string    "lname"
     t.string    "password"
+    t.string    "email"
   end
 
   add_index :users, :username, unique: true
@@ -62,5 +63,12 @@ ActiveRecord::Schema.define(version: 20150809022253) do
   create_table "likes", force: :cascade do |t|
     t.integer   "user_id"
     t.text      "likedlist"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer   "user_id"
+    t.text      "title"
+    t.text      "message"
+    t.text      "image"
   end
 end

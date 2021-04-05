@@ -74,6 +74,7 @@ Feature: Do homepage features
     And  I fill in "user_lname" with "Goodman"
     And  I fill in "user_username" with "user1"
     And  I fill in "user_password" with "abcdeghi"
+    And  I fill in "user_email" with "abcdeghi@gmail.com"
     And I press "Create Account"
     Then I should see "That username already exists. Please try a different one"
 
@@ -85,6 +86,7 @@ Feature: Do homepage features
     And  I fill in "user_lname" with "Goodman"
     And  I fill in "user_username" with "user3"
     And  I fill in "user_password" with "1234567"
+    And  I fill in "user_email" with "abcdeghi@gmail.com"
     And I press "Create Account"
     Then I should see "Password must be at least 8 characters long"
 
@@ -96,6 +98,7 @@ Feature: Do homepage features
     And  I fill in "user_lname" with "Goodman"
     And  I fill in "user_username" with "user3"
     And  I fill in "user_password" with "1234567ate"
+    And  I fill in "user_email" with "abcdeghi@gmail.com"
     And I press "Create Account"
     Then I should see "Login"
 

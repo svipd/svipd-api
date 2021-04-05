@@ -57,7 +57,7 @@ RSpec.describe UsersController, :type => :controller do
     expect(response).to redirect_to(user_profile_path)
   end
   it "rendering profile page" do
-    get(:profile, {}, {'user_logged_in': true, "cart": {'id': 1, 'wishlist': "711719541080"}, "like": {'id': 5, 'likedlist': "711719541080"}})
+    get(:profile, {}, {'user_logged_in': true, "user": {"id": 1}, "cart": {'id': 1, 'wishlist': "711719541080"}, "like": {'id': 5, 'likedlist': "711719541080"}})
     expect(response).to have_http_status(200)
   end
   it "rendering wishlist page" do

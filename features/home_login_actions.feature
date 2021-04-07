@@ -26,6 +26,10 @@ Feature: Do homepage features
       | id | company_id | title                 | image        | description |
       | 1  | 1          | BROOKS BROTHERS OFFER | "http://..." | xyz         |
 
+    Given the following posts exist:
+      | id | user_id    | title                 | image        | message     |
+      | 1  | 1          | I love this!          | "http://..." | xyz         |
+
   Scenario: View homepage
     When I go to the home page
     Then I should see "Save"
@@ -203,3 +207,8 @@ Feature: Do homepage features
     Then I should see "Intelligent"
     And I should not see "BROOKS"
     And I should not see "xyz"
+
+  Scenario: View user profile
+    When I go to the home page
+    And I follow "a long String"
+    Then I should not see "User Testimonials"

@@ -64,5 +64,19 @@ RSpec.describe UsersController, :type => :controller do
     get(:wishlist, {}, {'user_logged_in': true, "cart": {'id': 1, 'wishlist': "711719541080"}, "like": {'id': 5, 'likedlist': "711719541080"}})
     expect(response).to have_http_status(200)
   end
+  it "sad path: update profile" do
+    get(:update, {id: 1}, {'user_logged_in': false, "cart": {'id': 1, 'wishlist': "711719541080"}, "like": {'id': 5, 'likedlist': "711719541080"}})
+    expect(response).to have_http_status(302)
+    expect(flash[:warning]).to be_present
+  end
+  it "sad path 2: update profile" do
+    get(:update, {id: 1}, {'user_logged_in': true, "cart": {'id': 1, 'wishlist': "711719541080"}, "like": {'id': 5, 'likedlist': "711719541080"}})
+    expect(response).to have_http_status(302)
+    expect(flash[:notice]).to be_present
+  end
+  it "get applicable stores" do
+    get(:applicable_stores, {id: 1, "distance": {"distance": 50}}, {'user_logged_in': true, "cart": {'id': 1, 'wishlist': "711719541080"}, "like": {'id': 5, 'likedlist': "711719541080"}})
+    expect(response).to have_http_status(200)
+  end
 end
  

@@ -29,6 +29,12 @@ Given /the following stories exist/ do |stories_table|
   end
 end
 
+Given /the following posts exist/ do |posts_tables|
+  posts_tables.hashes.each do |post|
+    Post.create post
+  end
+end
+
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.

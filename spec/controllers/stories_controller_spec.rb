@@ -28,6 +28,12 @@ RSpec.describe StoriesController, :type => :controller do
       end
     end
     let(:story) { FactoryBot.create(:story) }
+  context "GET show/:id" do
+    it "renders the product show template" do
+      get :show, id: 61
+      expect(response).to render_template("show")
+    end
+  end
   context "GET new" do
     it "renders the product new template" do
       get :new

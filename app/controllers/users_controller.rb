@@ -227,8 +227,8 @@ class UsersController < ApplicationController
   end
 
   def applicable_stores
-    cart = session[:cart]
-    wishlist = cart["wishlist"]
+    cart = session[:cart].nil? ? session["cart"] : session[:cart]
+    wishlist = cart["wishlist"].nil? ? cart[:wishlist] : cart["wishlist"]
     wishlist = wishlist.split(',')
     distance = params[:distance][:distance].to_f
     @companies = User.get_applicable_stores(wishlist, distance, session[:location])

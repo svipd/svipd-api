@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     if session[:user_logged_in]
       begin
         new_post = params[:post]
-        @post = Post.find( params[:id] )
+        @post = Post.find( params[:id].nil? ? params["id"] : params[:id] )
         if session[:user]["id"] != @post[:user_id]
           redirect_to root_path
         end
@@ -43,8 +43,6 @@ class PostsController < ApplicationController
     if session[:user_logged_in]
       begin
         new_post = params[:new_post]
-        puts params[:new_post].inspect
-        puts params[:new_post][:title]
         @post = Post.create!(title: new_post[:title],
                              message: new_post[:message],
                              image: new_post[:image],

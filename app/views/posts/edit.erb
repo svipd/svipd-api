@@ -67,7 +67,7 @@
     <%= text_field :post, :image, :class => 'form-control' %>
   <br/>
   <%= submit_tag 'Update Post', :class => 'btn btn-primary' %>
-  <%= link_to 'Destroy',  post_path(@post), data: { confirm: 'Are you sure?' }, method: :delete, :class => 'btn btn-danger' %>
+  <%= link_to 'Delete',  post_path(@post), data: { confirm: 'Are you sure?' }, method: :delete, :class => 'btn btn-danger' %>
   <%= link_to 'Cancel', user_profile_path, :class => 'btn btn-secondary' %>
 <% end %>
 </div>

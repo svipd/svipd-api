@@ -62,3 +62,5 @@ gem "database_cleaner", "~> 1.99"
 gem "geocoder", "~> 1.6"
 
 gem "aws-sdk-sns", "~> 1.39"
+
+gem "exception_handler", "~> 0.8.0"

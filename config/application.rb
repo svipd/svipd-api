@@ -22,5 +22,35 @@ module Rottenpotatoes
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    
+    # => Config hash (no initializer required)
+    config.exception_handler = {
+      dev:        nil, # allows you to turn ExceptionHandler "on" in development
+      db:         nil, # allocates a "table name" into which exceptions are saved (defaults to nil)
+      email:      nil, # sends exception emails to a listed email (string // "you@email.com")
+
+      # Custom Exceptions
+      custom_exceptions: {
+        'ActionController::RoutingError' => :xx # => example
+      },
+
+      exceptions: {
+        "all" => {
+          layout: "exception" # define layout
+        },
+        "4xx" => {
+          layout: "exception" # define layout
+        },    
+        "5xx" => {
+          layout: "exception" # define layout
+        },
+        "NoMethodError" => {
+          layout: "exception" # define layout
+        }
+
+      }
+    }
   end
+  
 end

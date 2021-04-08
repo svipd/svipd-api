@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
           new_hash["image_url"] = p.company.image_url
           new_hash["distance"] = p.distance
           new_hash["total"] = p.price
+          new_hash["company_id"] = p.company_id
           comp_info[p.company_id] = new_hash
         else
           comp_info[p.company_id]["total"] += p.price

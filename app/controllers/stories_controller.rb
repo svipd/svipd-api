@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
       story_json = params[:story]
       @story = Story.create!(title: story_json[:title],
                                  description: story_json[:description],
-                                 image: story_json[:image],
+                                 image: story_json[:url],
                                  company_id: session[:merchant_id])
       User.send_email_to_users_new_story(story_json[:description], story_json[:title])
       flash[:notice] = "#{@story.title} was successfully created."

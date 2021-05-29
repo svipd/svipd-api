@@ -208,3 +208,10 @@ input {
     text-decoration: none;
 }
 h5{ color:white; }
+
+.picofc {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%
+}

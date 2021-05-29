@@ -2,43 +2,4 @@
 <%= stylesheet_link_tag "application" %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-<% if flash[:warning_404] %>
-  <div class="alert alert-danger" role="alert" id="warning">
-    <%= flash[:warning_404] %>
-  </div>
-<% end %>
-<% if session[:user_logged_in] %>
-  <%= render "common/header_user_logged_in" %>
-<% else %>
-  <%= render "common/header" %>
-<% end %>
-<%= render "stories/bar" %>
-<%= form_tag products_path, method: :get, id: 'search', :class => 'form' do %>
-  <%= render "products/search" %>
-<% end %>
-
-<%= render "home/section_posts" %>
-
-<%= render "home/features" %>
-<br />
-<br />
-<br />
-<br />
-<br />
-<% unless session[:user_logged_in] %>
-  <%= render "home/section_search" %>
-  <%= render "home/section_social" %>
-  <%= render "home/section_join" %>
-<% end %>
-<%= render "home/section_faq" %>
-<br />
-<br />
-<br />
-<%= render "common/footer" %>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init();
-    AOS.refresh();
-</script>
+<%= image_tag "coolcalendar.JPG", class: "picofc", alt: "iphone-mockup-showing-sVipd-mobile-application" %>
